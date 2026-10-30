@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#B3E5FC">
+<title>Ойнаймын және үйренемін! — №221 мектеп</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --fs:1;--bs:1;
+  --ink:#33275A;--ink2:#5E4F8C;--card:#ffffff;--line:#E3D9F7;
+  --bgA:#B3E5FC;--bgB:#E9F8FF;--bgC:#FFF6CC;
+  --shadow:0 .45rem 0 rgba(51,39,90,.14);
+  --good:#43C463;--goodD:#2E9E4A;
+  --sec:#81D4FA;--secD:#0288D1;--secS:#E1F5FE;
+}
+html{font-size:calc(19px * var(--fs));-webkit-text-size-adjust:100%}
+@media (max-width:640px){html{font-size:calc(16px * var(--fs))}}
+body{
+  font-family:"Nunito","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-weight:800;color:var(--ink);line-height:1.3;
+  background:linear-gradient(180deg,var(--bgA) 0%,var(--bgB) 45%,var(--bgC) 100%);
+  background-attachment:fixed;min-height:100vh;overflow-x:hidden;
+}
+body.bigbtn{--bs:1.28}
+button{font:inherit;color:inherit;cursor:pointer;border:none;background:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+button:focus-visible,input:focus-visible{outline:5px solid #FF4081;outline-offset:4px}
+button:disabled{cursor:not-allowed}
+svg{display:block}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- Фон безендірулері ---------- */
+#decor{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+#decor .d{position:absolute}
+#decor .d svg{width:100%;height:auto}
+.drift{left:0;animation:drift 60s linear infinite}
+@keyframes drift{from{transform:translateX(-30vw)}to{transform:translateX(130vw)}}
+.float{animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+.twinkle{animation:twinkle 2.6s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.1)}}
+.decnum{font-size:5rem;font-weight:900;opacity:.28;line-height:1}
+.sway2{transform-origin:50% 100%;animation:sway 4s ease-in-out infinite}
+@media (max-width:640px){#decor{opacity:.5}}
+
+/* ---------- SVG анимациялары ---------- */
+.spin{transform-box:fill-box;transform-origin:center;animation:spin 14s linear infinite}
+.spin.slow{animation-duration:40s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pi{transform-box:fill-box;transform-origin:center;animation:popIn .7s cubic-bezier(.3,1.6,.5,1) both}
+.pi.d2{animation-delay:.25s}.pi.d3{animation-delay:.5s}
+@keyframes popIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.bounce{transform-box:fill-box;transform-origin:center bottom;animation:bounce 1.6s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+.sway{transform-box:fill-box;transform-origin:50% 100%;animation:sway 3.5s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+.rise{animation:rise 3.4s ease-in-out infinite}
+@keyframes rise{0%{transform:translateY(60px);opacity:0}15%{opacity:1}80%{opacity:1}100%{transform:translateY(-70px);opacity:0}}
+.flap{transform-box:fill-box;transform-origin:30% 95%;animation:flap .35s ease-in-out infinite alternate}
+@keyframes flap{from{transform:scaleY(1)}to{transform:scaleY(.45)}}
+.flap2{transform-box:view-box;transform-origin:50% 50%;animation:flap2 .3s ease-in-out infinite alternate}
+@keyframes flap2{from{transform:scaleX(1)}to{transform:scaleX(.35)}}
+.pulse{transform-box:fill-box;transform-origin:center;animation:pulse 1.3s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.pulse.b{animation-delay:.65s}
+.wag{transform-box:fill-box;transform-origin:0% 100%;animation:wag 1.4s ease-in-out infinite}
+@keyframes wag{0%,100%{transform:rotate(0)}50%{transform:rotate(-10deg)}}
+.tw{transform-box:fill-box;transform-origin:center;animation:twinkle 2s ease-in-out infinite}
+.tw.b{animation-delay:.6s}.tw.c{animation-delay:1.2s}
+
+/* ---------- Жоғарғы панель ---------- */
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:.6rem;
+  padding:.55rem clamp(.6rem,2vw,1.4rem);background:rgba(255,255,255,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:4px solid var(--line)}
+.hgroup{display:flex;gap:.5rem;align-items:center}
+.hbtn{display:flex;align-items:center;gap:.45rem;min-height:calc(3.1rem * var(--bs));padding:.35rem 1rem;border-radius:999px;background:#fff;
+  border:4px solid var(--line);box-shadow:0 .3rem 0 rgba(51,39,90,.15);font-size:calc(1.02rem * var(--bs));transition:transform .15s}
+.hbtn:active{transform:translateY(3px);box-shadow:none}
+.hbtn .hi{font-size:1.45em;line-height:1}
+.hbtn.hide{visibility:hidden}
+#homeBtn{background:#DFF5DF;border-color:#81C784}
+#a11yBtn{background:#FFF59D;border-color:#FBC02D}
+#musicBtn.mon{background:#C8F7C5;border-color:#43A047;color:#1B5E20}
+#musicBtn.moff{background:#ECEFF1;border-color:#90A4AE;color:#455A64}
+.starbox{display:flex;align-items:center;gap:.35rem;font-size:calc(1.55rem * var(--bs));background:#FFF8E1;border:4px solid #FFD54F;border-radius:999px;padding:.15rem 1rem .15rem .55rem;min-height:calc(3.1rem * var(--bs))}
+.starbox svg{width:2.1rem;height:2.1rem}
+.starbox.bump{animation:bump .55s}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.35)}100%{transform:scale(1)}}
+@media (max-width:820px){.hl{display:none}.hbtn{padding:.35rem .65rem}}
+
+/* ---------- Негізгі аймақ ---------- */
+#app{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:1rem clamp(.8rem,3vw,2rem) 3rem}
+.screen{animation:enter .45s ease both}
+@keyframes enter{from{opacity:0;transform:translateY(24px) scale(.98)}to{opacity:1;transform:none}}
+
+/* ---------- Басты бет ---------- */
+.hero{text-align:center;padding:.6rem 0 .2rem}
+.title{font-size:clamp(2.05rem,6.4vw,4.3rem);font-weight:900;line-height:1.12;margin:.4rem 0 1rem;letter-spacing:.02em}
+.title .w{display:inline-block;white-space:nowrap;margin:0 .18em}
+.title .l{display:inline-block;animation:wave 2.4s ease-in-out infinite;text-shadow:0 .07em 0 #fff,0 .14em 0 rgba(51,39,90,.18)}
+@keyframes wave{0%,100%{transform:translateY(0)}50%{transform:translateY(-.12em)}}
+.greet{display:flex;align-items:center;justify-content:center;gap:1.2rem;flex-wrap:wrap;margin:0 auto 1.1rem}
+.mascot{width:clamp(96px,14vw,136px);flex:none;animation:bob 2.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-10px) rotate(4deg)}}
+.bubble{position:relative;background:var(--card);border:4px solid var(--line);border-radius:1.7rem;padding:1.1rem 1.5rem;max-width:640px;box-shadow:var(--shadow);text-align:center}
+.bubble .sub{font-size:clamp(1.45rem,3vw,2rem);margin-bottom:.9rem}
+.bubble::before{content:"";position:absolute;left:-26px;top:50%;transform:translateY(-50%);border:13px solid transparent;border-right-color:var(--line)}
+@media (max-width:640px){.bubble::before{display:none}}
+.startbtn{display:inline-flex;align-items:center;gap:.6rem;background:linear-gradient(180deg,#7BE07F,#43C463);color:#0B3D12;border:5px solid #2E9E4A;border-radius:999px;
+  font-size:calc(1.6rem * var(--bs));padding:calc(.75rem * var(--bs)) calc(2rem * var(--bs));box-shadow:0 .45rem 0 #2E7D32;animation:glow 1.6s ease-in-out infinite;font-weight:900}
+.startbtn:active{transform:translateY(4px);box-shadow:0 .1rem 0 #2E7D32}
+.school{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:.4rem 1.2rem;background:rgba(255,255,255,.88);border:3px dashed #CE93D8;border-radius:1.2rem;padding:.6rem 1.2rem;font-size:1.05rem;color:var(--ink2);margin-bottom:1rem}
+.hint{text-align:center;font-size:1.25rem;margin:.4rem 0 1.4rem;color:var(--ink2)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.1rem,2.5vw,1.8rem)}
+@media (max-width:900px){.cards{grid-template-columns:1fr;max-width:560px;margin:0 auto}}
+.scard{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.6rem;padding:1.5rem 1.1rem 1.4rem;border-radius:2rem;
+  background:var(--c2);border:5px solid var(--c1);box-shadow:0 .6rem 0 var(--c3);transition:transform .2s,box-shadow .2s}
+.scard:hover{transform:translateY(-6px) rotate(-1deg)}
+.scard:active{transform:translateY(5px);box-shadow:0 .15rem 0 var(--c3)}
+.scard .pic{width:min(190px,58%);aspect-ratio:1;animation:float 5s ease-in-out infinite}
+.scard:nth-child(2) .pic{animation-delay:-1.6s}.scard:nth-child(3) .pic{animation-delay:-3.2s}
+.scard .pic svg{width:100%;height:100%}
+.scard .stitle{font-size:clamp(1.35rem,2.3vw,1.7rem);line-height:1.15;font-weight:900}
+.scard .sgoal{font-size:1.02rem;color:var(--ink2)}
+.scard .num{position:absolute;top:-1rem;left:-.7rem;width:3.1rem;height:3.1rem;border-radius:50%;background:var(--c3);color:#fff;display:grid;place-items:center;font-size:1.55rem;border:4px solid #fff;box-shadow:0 .2rem 0 rgba(0,0,0,.12)}
+.pstars{display:flex;gap:.35rem}
+.pstars .s{width:2.1rem;height:2.1rem;opacity:.25;filter:grayscale(1)}
+.pstars .s.on{opacity:1;filter:none}
+.go{display:inline-flex;align-items:center;gap:.5rem;background:var(--c3);color:#fff;font-size:calc(1.35rem * var(--bs));padding:calc(.7rem * var(--bs)) calc(1.7rem * var(--bs));border-radius:999px;box-shadow:0 .35rem 0 rgba(0,0,0,.22);margin-top:.2rem}
+
+/* ---------- Тапсырма беті ---------- */
+.taskhead{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.8rem;margin-bottom:1rem}
+.secchip{display:flex;align-items:center;gap:.6rem;background:var(--card);border:4px solid var(--sec);border-radius:999px;padding:.35rem 1.2rem .35rem .45rem;font-size:1.2rem}
+.secchip .ic{width:2.7rem;height:2.7rem;flex:none}
+.secchip .ic svg{width:100%;height:100%}
+.dots{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+.dot{width:calc(3rem * var(--bs));height:calc(3rem * var(--bs));border-radius:50%;background:var(--card);border:4px solid var(--line);display:grid;place-items:center;font-size:1.25rem;color:var(--ink2);transition:transform .2s}
+.dot.cur{border-color:var(--secD);transform:scale(1.14);color:var(--ink);box-shadow:0 0 0 5px var(--secS)}
+.dot.done{background:#FFD54F;border-color:#F9A825;color:#7A4A00}
+.dot:disabled{opacity:.45}
+.count{font-size:1.25rem;margin-left:.3rem;background:var(--card);border:4px solid var(--line);border-radius:999px;padding:.2rem .8rem}
+.tcard{position:relative;background:var(--card);border:5px solid var(--sec);border-radius:2.2rem;padding:clamp(1rem,3vw,2rem);box-shadow:0 .7rem 0 var(--secD);overflow:hidden}
+.ttitle{display:inline-flex;flex-wrap:wrap;align-items:center;gap:.5rem;background:var(--secS);border:3px solid var(--sec);border-radius:999px;padding:.3rem 1.1rem;font-size:1.12rem;margin-bottom:.7rem}
+.donebadge{background:#C8F7C5;border-radius:999px;padding:.05rem .7rem;color:#1B5E20}
+.q{font-size:clamp(1.6rem,3.6vw,2.4rem);line-height:1.2;font-weight:900}
+.scene{margin:1rem auto .4rem;max-width:660px;border-radius:1.6rem;overflow:hidden;background:var(--secS);border:4px solid var(--secS)}
+.scene svg{width:100%;height:auto;max-height:44vh}
+.opts{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(.7rem,2vw,1.4rem);margin-top:1.2rem}
+.opt{position:relative;display:flex;align-items:center;justify-content:center;gap:.7rem;min-height:calc(5.2rem * var(--bs));padding:calc(.8rem * var(--bs)) calc(1.5rem * var(--bs));
+  border-radius:1.6rem;background:var(--oc,#E1F5FE);border:5px solid var(--ocd,#29B6F6);box-shadow:0 .45rem 0 var(--ocd,#29B6F6);font-size:calc(1.7rem * var(--bs));font-weight:900;transition:transform .15s,box-shadow .15s,opacity .25s}
+.opt:hover{transform:translateY(-4px)}
+.opt:active{transform:translateY(4px);box-shadow:0 .1rem 0 var(--ocd)}
+.opt .oi svg{width:calc(2.9rem * var(--bs));height:calc(2.9rem * var(--bs))}
+.opts.text .opt{flex:1 1 12rem;max-width:20rem}
+.opts.nums .opt{flex-direction:column;gap:.3rem;min-width:calc(7rem * var(--bs));padding:calc(.6rem * var(--bs)) calc(1.4rem * var(--bs))}
+.bignum{font-size:calc(3.6rem * var(--bs));line-height:1}
+.dotrow{display:flex;gap:.3rem;flex-wrap:wrap;justify-content:center;max-width:7rem}
+.dotrow i{width:1rem;height:1rem;border-radius:50%;background:var(--ocd);display:block}
+.opts.pics .opt{flex-direction:column;gap:.4rem;padding:1rem}
+.opts.pics.n2 .opt{width:min(calc(13rem * var(--bs)),40vw)}
+.opts.pics.n3 .opt{width:min(calc(12rem * var(--bs)),26vw)}
+.opts.pics.n4 .opt{width:min(calc(10.5rem * var(--bs)),40vw)}
+.opts.pics .opt .oi{width:100%}
+.opts.pics .opt .oi svg{width:100%;height:calc(7.5rem * var(--bs))}
+.opts.pics .opt .ol{font-size:calc(1.25rem * var(--bs))}
+@media (max-width:640px){
+  .opts.pics .opt{padding:.5rem;border-width:4px}.opts{gap:.7rem}
+  .opts.pics.n3 .opt .oi svg{height:22vw}
+}
+.opt.right{background:#C8F7C5 !important;border-color:var(--goodD) !important;box-shadow:0 .45rem 0 var(--goodD) !important;animation:popB .6s;opacity:1 !important}
+.opt.right::after{content:"✔";position:absolute;top:-1rem;right:-.9rem;width:2.8rem;height:2.8rem;border-radius:50%;background:var(--good);color:#fff;display:grid;place-items:center;font-size:1.5rem;border:4px solid #fff}
+.opt.picked{border-color:#FFB300 !important;box-shadow:0 0 0 7px #FFE082,0 .45rem 0 #FFB300 !important;transform:scale(1.05)}
+.opt.wrong{animation:shake .5s;opacity:.6}
+.opt.dim{opacity:.4;pointer-events:none}
+@keyframes popB{0%{transform:scale(1)}40%{transform:scale(1.14)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-10px)}40%{transform:translateX(10px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
+.fb{display:flex;align-items:center;justify-content:center;gap:.8rem;min-height:4.6rem;margin-top:1.4rem}
+.mini{width:4.4rem;flex:none}
+.fb .msg{font-size:clamp(1.3rem,3vw,1.85rem);padding:.6rem 1.3rem;border-radius:1.4rem;background:var(--card);border:4px solid var(--line)}
+.fb.good .msg{background:#E8F5E9;border-color:#66BB6A;color:#1B5E20}
+.fb.try .msg{background:#FFF3E0;border-color:#FFB74D;color:#7A4100}
+.fb.pick .msg{background:#FFFDE7;border-color:#FFD54F;color:#5D4300}
+.nav{display:flex;justify-content:space-between;gap:1rem;margin-top:1.5rem}
+.navbtn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font-size:calc(1.4rem * var(--bs));padding:calc(.8rem * var(--bs)) calc(1.6rem * var(--bs));border-radius:999px;background:var(--card);border:4px solid var(--line);box-shadow:var(--shadow);min-height:calc(4rem * var(--bs));transition:transform .15s,opacity .2s}
+.navbtn:active:not(:disabled){transform:translateY(4px);box-shadow:none}
+.navbtn.next{background:var(--sec);border-color:var(--secD);box-shadow:0 .4rem 0 var(--secD)}
+.navbtn:disabled{opacity:.45;filter:grayscale(.5);box-shadow:none}
+.navbtn.glow,.glow{animation:glow 1.2s ease-in-out infinite}
+@keyframes glow{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.navbtn.hide{visibility:hidden}
+.spark{position:absolute;width:2.6rem;height:2.6rem;pointer-events:none;z-index:5;animation:spark 1.1s ease-out forwards}
+.spark svg{width:100%;height:100%}
+@keyframes spark{0%{transform:scale(0) rotate(0);opacity:1}50%{transform:scale(1.3) rotate(90deg);opacity:1}100%{transform:scale(0) rotate(180deg);opacity:0}}
+
+/* ---------- Мақтау жазуы ---------- */
+#praise{position:fixed;inset:0;display:grid;place-items:center;pointer-events:none;z-index:80}
+#praise .pw{display:flex;flex-direction:column;align-items:center;gap:.4rem;animation:praiseIn 2.1s ease forwards;padding:0 1rem;text-align:center}
+#praise .pstar{display:flex;gap:.6rem}
+#praise .pstar svg{width:clamp(48px,8vw,80px)}
+#praise .ptext{font-size:clamp(2.3rem,8vw,5.4rem);font-weight:900;color:#FF2E7E;-webkit-text-stroke:4px #fff;paint-order:stroke fill;text-shadow:0 .07em 0 #AD1457,0 .2em .35em rgba(0,0,0,.22);line-height:1.1}
+@keyframes praiseIn{0%{opacity:0;transform:scale(.3) rotate(-8deg)}18%{opacity:1;transform:scale(1.15) rotate(3deg)}30%{transform:scale(1) rotate(0)}80%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.08) translateY(-30px)}}
+.flystar{position:fixed;left:0;top:0;width:70px;height:70px;z-index:85;pointer-events:none}
+.flystar svg{width:100%;height:100%}
+#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:79}
+
+/* ---------- Марапат және қорытынды ---------- */
+.reward{text-align:center;padding:.6rem 0 1rem}
+.rwtitle{font-size:clamp(2.2rem,6vw,3.8rem);font-weight:900;color:#E91E63;text-shadow:0 .07em 0 #fff,0 .13em 0 rgba(173,20,87,.25);line-height:1.1}
+.rwsub{font-size:clamp(1.35rem,3.4vw,2.1rem);margin:.4rem 0 .2rem}
+.rwstage{position:relative;display:flex;justify-content:center;align-items:flex-end;gap:clamp(.5rem,3vw,2rem);margin:1rem 0 .6rem;min-height:clamp(200px,32vw,300px)}
+.rwstage>*{position:relative;z-index:1}
+.rays{position:absolute !important;z-index:0 !important;left:50%;top:50%;width:min(460px,92vw);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;overflow:hidden;opacity:.85;
+  -webkit-mask:radial-gradient(circle,#000 35%,transparent 70%);mask:radial-gradient(circle,#000 35%,transparent 70%)}
+.rays svg{width:100%;height:100%}
+.trophy{width:clamp(160px,27vw,240px);animation:trophy 1.8s ease-in-out infinite}
+@keyframes trophy{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-12px) rotate(3deg)}}
+.medal{width:clamp(80px,13vw,125px);transform-origin:50% 0;animation:swing 2.2s ease-in-out infinite}
+@keyframes swing{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+.rwstars{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem;margin:.4rem 0}
+.rwstars svg{width:clamp(52px,9vw,80px);animation:starIn .7s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes starIn{from{transform:scale(0) rotate(-180deg)}to{transform:scale(1) rotate(0)}}
+.totalbox{display:inline-flex;align-items:center;gap:.6rem;background:#FFF8E1;border:5px solid #FFD54F;border-radius:1.6rem;padding:.6rem 1.4rem;font-size:clamp(1.4rem,3.4vw,2rem);margin:.6rem 0}
+.totalbox svg{width:3rem;height:3rem}
+.totalbox b{font-size:1.5em;color:#E65100}
+.secdone{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem;margin:.8rem 0}
+.secdone span{display:inline-flex;align-items:center;gap:.4rem;background:var(--card);border:4px solid var(--line);border-radius:999px;padding:.35rem 1rem;font-size:1.05rem}
+.rwbtns{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-top:1.2rem}
+.bigagain{font-size:calc(1.7rem * var(--bs)) !important;background:linear-gradient(180deg,#7BE07F,#43C463) !important;border-color:#2E9E4A !important;box-shadow:0 .45rem 0 #2E7D32 !important;color:#0B3D12 !important}
+
+/* ---------- Қолжетімділік панелі ---------- */
+#panelBack{position:fixed;inset:0;background:rgba(30,20,60,.45);z-index:90;display:none}
+#panel{position:fixed;top:0;right:0;height:100%;width:min(480px,100%);background:var(--card);color:var(--ink);z-index:91;transform:translateX(105%);transition:transform .3s;overflow-y:auto;padding:1.2rem 1.1rem 2rem;border-left:5px solid var(--line);box-shadow:-10px 0 30px rgba(0,0,0,.2);visibility:hidden}
+body.panel-open #panel{transform:none;visibility:visible}
+body.panel-open #panelBack{display:block}
+.ph{display:flex;justify-content:space-between;align-items:center;gap:.8rem;margin-bottom:1rem}
+.ph h2{font-size:1.45rem;line-height:1.15}
+.close{flex:none;width:3.4rem;height:3.4rem;border-radius:50%;background:#FFCDD2;border:4px solid #E57373;font-size:1.5rem}
+.pgroup{margin-bottom:1.3rem}
+.pgroup h3{font-size:1.08rem;color:var(--ink2);margin-bottom:.5rem}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+@media (max-width:400px){.pgrid{grid-template-columns:1fr}}
+.tile{display:flex;align-items:center;gap:.55rem;min-height:calc(4rem * var(--bs));padding:.55rem .75rem;border-radius:1.1rem;border:4px solid var(--line);background:var(--card);font-size:1rem;text-align:left;line-height:1.15}
+.tile .ti{font-size:1.6rem;flex:none}
+.tile .tl{flex:1}
+.tile .st{flex:none;font-size:.78rem;padding:.15rem .45rem;border-radius:999px;background:#EEEAF6}
+.tile[aria-pressed="true"]{border-color:#43A047;background:#E8F5E9}
+.tile[aria-pressed="true"] .st{background:#43A047;color:#fff}
+.tile.wide{width:100%;margin-top:.6rem}
+.sw{flex:none;width:2.6rem;height:2.6rem;border-radius:.7rem;border:3px solid #999;display:grid;place-items:center;font-size:1rem;font-weight:900}
+.fontrow{display:flex;align-items:center;gap:.8rem}
+.fontrow button{width:4.6rem;height:4.4rem;border-radius:1rem;border:4px solid var(--line);background:var(--card);font-size:1.6rem}
+.fontrow .val{font-size:1.4rem;min-width:4.5rem;text-align:center}
+.range{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.35rem .6rem;padding:.7rem .9rem;border:4px solid var(--line);border-radius:1.1rem;background:var(--card);margin-top:.6rem}
+.range .ri{font-size:1.6rem}
+.range .rv{font-size:1.15rem;min-width:3.3rem;text-align:right}
+.range input{grid-column:1 / -1;-webkit-appearance:none;appearance:none;width:100%;height:16px;border-radius:999px;margin:.6rem 0 .3rem;cursor:pointer;
+  background:linear-gradient(90deg,#66BB6A 0,#66BB6A var(--p,50%),#E3D9F7 var(--p,50%),#E3D9F7 100%)}
+.range input::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:36px;height:36px;border-radius:50%;background:#fff;border:6px solid #43A047;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.range input::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:#fff;border:6px solid #43A047}
+#toast{position:fixed;bottom:1.2rem;left:50%;transform:translate(-50%,180%);background:var(--ink);color:var(--card);padding:.8rem 1.4rem;border-radius:999px;font-size:1.15rem;z-index:95;transition:transform .3s;max-width:92vw;text-align:center}
+#toast.show{transform:translate(-50%,0)}
+
+/* ---------- Контраст режимдері ---------- */
+body.t-dark{--ink:#fff;--ink2:#fff;--card:#000;--line:#fff;--bgA:#000;--bgB:#000;--bgC:#000;--sec:#000;--secD:#fff;--secS:#000;--shadow:none}
+body.t-bw{--ink:#000;--ink2:#000;--card:#fff;--line:#000;--bgA:#fff;--bgB:#fff;--bgC:#fff;--sec:#fff;--secD:#000;--secS:#fff;--shadow:none}
+body.contrast{background:var(--bgA);font-weight:900}
+.contrast #decor,.contrast .rays{display:none}
+.contrast .topbar{background:var(--card)}
+.contrast .hbtn,.contrast #musicBtn,.contrast .starbox,.contrast .scard,.contrast .go,.contrast .opt,.contrast .navbtn,.contrast .tile,.contrast .close,
+.contrast .dot,.contrast .secchip,.contrast .ttitle,.contrast .bubble,.contrast .school,.contrast .fb .msg,.contrast .fontrow button,.contrast .tcard,
+.contrast .donebadge,.contrast .scard .num,.contrast .count,.contrast .startbtn,.contrast .totalbox,.contrast .secdone span,.contrast .range{
+  background:var(--card) !important;color:var(--ink) !important;border-color:var(--line) !important;box-shadow:none !important;border-width:5px !important}
+.contrast .scard,.contrast .tcard{border-width:6px !important}
+.contrast .scene{background:var(--card);border-color:var(--line)}
+.contrast .title .l,.contrast .rwtitle,.contrast .totalbox b{color:var(--ink) !important;text-shadow:none}
+.contrast .opt.right{border-width:9px !important;outline:4px dashed var(--line);outline-offset:4px}
+.contrast .opt.right::after{background:var(--ink);color:var(--card);border-color:var(--card)}
+.contrast .opt.picked{outline:6px solid var(--line);outline-offset:4px}
+.contrast .dot.done{background:var(--ink) !important;color:var(--card) !important}
+.contrast .dot.cur{outline:4px solid var(--line);outline-offset:3px}
+.contrast .dotrow i{background:var(--ink)}
+.contrast .tile[aria-pressed="true"]{border-width:8px !important;border-style:double !important}
+.contrast .tile[aria-pressed="true"] .st{background:var(--ink);color:var(--card)}
+.contrast .tile .st{background:var(--card);border:2px solid var(--line)}
+.contrast .range input{background:linear-gradient(90deg,var(--ink) 0,var(--ink) var(--p,50%),var(--card) var(--p,50%),var(--card) 100%);border:3px solid var(--line)}
+.contrast #praise .ptext{color:var(--ink);-webkit-text-stroke:4px var(--card);text-shadow:none}
+.contrast #toast{border:3px solid var(--card)}
+.t-bw svg,.t-bw .hi,.t-bw #confetti,.t-bw .emo{filter:grayscale(1) contrast(1.35)}
+
+/* Анимацияны азайту */
+body.noanim *,body.noanim *::before,body.noanim *::after{animation:none !important;transition:none !important}
+</style>
+</head>
+<body class="t-color">
+<noscript><p style="padding:2rem;font-size:1.5rem">Сайт жұмыс істеуі үшін браузерде JavaScript қосулы болуы керек.</p></noscript>
+
+<div id="decor" aria-hidden="true"></div>
+
+<header class="topbar">
+  <button id="homeBtn" class="hbtn hide" aria-label="Басты бет"><span class="hi">🏠</span><span class="hl">Басты бет</span></button>
+  <div class="starbox" id="starBox" title="Жиналған жұлдыздар"><span id="starIcon"></span><span id="starCount" aria-live="polite">0</span><span class="sr">жұлдыз</span></div>
+  <div class="hgroup">
+    <button id="musicBtn" class="hbtn mon" aria-pressed="true" aria-label="Музыканы қосу немесе өшіру"><span class="hi">🎵</span><span class="hl">Музыка қосулы</span></button>
+    <button id="a11yBtn" class="hbtn" aria-label="Қолжетімділік панелі" aria-haspopup="dialog"><span class="hi">👁️</span><span class="hl">Баптаулар</span></button>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<div id="praise" aria-live="assertive"></div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<div id="toast" role="status"></div>
+<div id="panelBack"></div>
+<aside id="panel" role="dialog" aria-modal="true" aria-label="Қолжетімділік панелі"></aside>
+
+<script>
+(function(){
+'use strict';
+
+/* =====================================================================
+   1. КӨМЕКШІ ФУНКЦИЯЛАР
+   ===================================================================== */
+var $ = function(s){ return document.querySelector(s); };
+var $$ = function(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); };
+function F(n){ return Math.round(n*10)/10; }
+function svg(vb, inner, cls){
+  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+vb+'"'+(cls?' class="'+cls+'"':'')+' aria-hidden="true" focusable="false">'+inner+'</svg>';
+}
+
+/* =====================================================================
+   2. МУЛЬТФИЛЬМ СУРЕТТЕРІ (SVG — интернетсіз)
+   ===================================================================== */
+function starPath(cx,cy,R,r){
+  r = r || R*0.5; var d='';
+  for(var i=0;i<10;i++){
+    var rad = i%2 ? r : R, a = Math.PI/5*i - Math.PI/2;
+    d += (i?'L':'M') + F(cx+rad*Math.cos(a)) + ' ' + F(cy+rad*Math.sin(a));
+  }
+  return d+'Z';
+}
+function face(cx,cy,R,ink){
+  ink = ink || '#4E342E';
+  return `<circle cx="${F(cx-R*.3)}" cy="${F(cy-R*.08)}" r="${F(R*.1)}" fill="${ink}"/>
+<circle cx="${F(cx+R*.3)}" cy="${F(cy-R*.08)}" r="${F(R*.1)}" fill="${ink}"/>
+<circle cx="${F(cx-R*.27)}" cy="${F(cy-R*.12)}" r="${F(R*.035)}" fill="#fff"/>
+<circle cx="${F(cx+R*.33)}" cy="${F(cy-R*.12)}" r="${F(R*.035)}" fill="#fff"/>
+<path d="M${F(cx-R*.22)} ${F(cy+R*.16)} Q${F(cx)} ${F(cy+R*.42)} ${F(cx+R*.22)} ${F(cy+R*.16)}" stroke="${ink}" stroke-width="${F(R*.08)}" fill="none" stroke-linecap="round"/>
+<circle cx="${F(cx-R*.52)}" cy="${F(cy+R*.15)}" r="${F(R*.11)}" fill="#FF8A80" opacity=".7"/>
+<circle cx="${F(cx+R*.52)}" cy="${F(cy+R*.15)}" r="${F(R*.11)}" fill="#FF8A80" opacity=".7"/>`;
+}
+function star(cx,cy,R,o){
+  o = o || {};
+  var fill = o.fill || '#FFD54F', st = o.stroke || '#F5A300';
+  return `<path d="${starPath(cx,cy,R)}" fill="${fill}" stroke="${st}" stroke-width="${F(Math.max(2,R*.09))}" stroke-linejoin="round"/>` +
+    (o.face ? face(cx, cy+R*.06, R*.55) : '');
+}
+function sun(x,y,r){
+  var rays='';
+  for(var i=0;i<12;i++){
+    var a=i*Math.PI/6;
+    rays += `<line x1="${F((r+9)*Math.cos(a))}" y1="${F((r+9)*Math.sin(a))}" x2="${F((r+25)*Math.cos(a))}" y2="${F((r+25)*Math.sin(a))}" stroke="#FFB300" stroke-width="${F(r*.17)}" stroke-linecap="round"/>`;
+  }
+  return `<g transform="translate(${x} ${y})"><g class="spin">${rays}</g><circle r="${r}" fill="#FFE066" stroke="#FFB300" stroke-width="4"/>${face(0,2,r)}</g>`;
+}
+function cloud(x,y,s){
+  return `<g transform="translate(${x} ${y}) scale(${s||1})" fill="#fff"><circle cx="0" cy="0" r="22"/><circle cx="26" cy="-12" r="28"/><circle cx="54" cy="0" r="22"/><rect x="0" y="0" width="54" height="22"/></g>`;
+}
+function ground(w,h){
+  return `<path d="M0 ${h-52} Q${w*.25} ${h-78} ${w*.5} ${h-54} T${w} ${h-56} L${w} ${h} L0 ${h}Z" fill="#AED581"/>
+<path d="M0 ${h-30} Q${w*.3} ${h-48} ${w*.6} ${h-30} T${w} ${h-32} L${w} ${h} L0 ${h}Z" fill="#8BC34A"/>`;
+}
+function flower(x,y,s,petal){
+  petal = petal || '#F06292';
+  var p='';
+  for(var i=0;i<6;i++) p += `<ellipse cx="0" cy="-122" rx="13" ry="22" fill="${petal}" stroke="#fff" stroke-width="2" transform="rotate(${i*60} 0 -100)"/>`;
+  return `<g transform="translate(${x} ${y}) scale(${s||1})">
+<path d="M0 0 Q-7 -50 0 -100" stroke="#43A047" stroke-width="8" fill="none" stroke-linecap="round"/>
+<ellipse cx="-18" cy="-40" rx="18" ry="9" fill="#66BB6A" transform="rotate(-30 -18 -40)"/>
+<ellipse cx="16" cy="-62" rx="18" ry="9" fill="#66BB6A" transform="rotate(30 16 -62)"/>
+${p}<circle cx="0" cy="-100" r="16" fill="#FFD54F" stroke="#F9A825" stroke-width="3"/>${face(0,-99,15)}</g>`;
+}
+function kid(x,y,s){
+  return `<g transform="translate(${x} ${y}) scale(${s||1})">
+<rect x="-24" y="40" width="18" height="46" rx="8" fill="#3949AB"/><rect x="6" y="40" width="18" height="46" rx="8" fill="#3949AB"/>
+<ellipse cx="-16" cy="88" rx="16" ry="8" fill="#E53935"/><ellipse cx="16" cy="88" rx="16" ry="8" fill="#E53935"/>
+<path d="M-30 -8 Q-56 18 -50 44" stroke="#FFD2AE" stroke-width="13" fill="none" stroke-linecap="round"/>
+<path d="M30 -8 Q58 12 62 34" stroke="#FFD2AE" stroke-width="13" fill="none" stroke-linecap="round"/>
+<rect x="-33" y="-20" width="66" height="72" rx="24" fill="#FFB300" stroke="#E08E00" stroke-width="3"/>
+${star(0,12,13,{fill:'#fff',stroke:'#E08E00'})}
+<circle cx="0" cy="-52" r="38" fill="#FFD2AE" stroke="#E0A47A" stroke-width="3"/>
+<path d="M-38 -56 Q-36 -96 0 -94 Q36 -96 38 -56 Q28 -76 10 -72 Q0 -84 -14 -72 Q-30 -76 -38 -56Z" fill="#5D3A1A"/>
+<circle cx="-13" cy="-52" r="5" fill="#2d2d2d"/><circle cx="13" cy="-52" r="5" fill="#2d2d2d"/>
+<circle cx="-11" cy="-54" r="1.8" fill="#fff"/><circle cx="15" cy="-54" r="1.8" fill="#fff"/>
+<circle cx="-24" cy="-38" r="6" fill="#FF8A80" opacity=".6"/><circle cx="24" cy="-38" r="6" fill="#FF8A80" opacity=".6"/>
+<path d="M-12 -34 Q0 -22 12 -34" stroke="#7a3b2e" stroke-width="4" fill="none" stroke-linecap="round"/></g>`;
+}
+function ball(x,y,r){
+  var cols=['#EF5350','#FFFFFF','#42A5F5','#FFFFFF','#FFCA28','#FFFFFF'], p='';
+  for(var i=0;i<6;i++){
+    var a1=i*Math.PI/3-Math.PI/2, a2=(i+1)*Math.PI/3-Math.PI/2;
+    p += `<path d="M0 0 L${F(r*Math.cos(a1))} ${F(r*Math.sin(a1))} A${r} ${r} 0 0 1 ${F(r*Math.cos(a2))} ${F(r*Math.sin(a2))}Z" fill="${cols[i]}"/>`;
+  }
+  return `<g transform="translate(${x} ${y})">${p}<circle r="${r}" fill="none" stroke="#5a4a7a" stroke-width="3"/><circle r="${F(r*.17)}" fill="#fff" stroke="#5a4a7a" stroke-width="2"/><ellipse cx="${F(-r*.42)}" cy="${F(-r*.45)}" rx="${F(r*.17)}" ry="${F(r*.09)}" fill="#fff" opacity=".85" transform="rotate(-35 ${F(-r*.42)} ${F(-r*.45)})"/></g>`;
+}
+function bird(x,y,s){
+  return `<g transform="translate(${x} ${y}) scale(${s||1}) rotate(-62)">
+<path d="M-38 6 L-66 -8 L-62 24Z" fill="#1E88E5" stroke="#1565C0" stroke-width="3" stroke-linejoin="round"/>
+<ellipse cx="0" cy="0" rx="44" ry="30" fill="#42A5F5" stroke="#1565C0" stroke-width="3"/>
+<ellipse cx="6" cy="11" rx="25" ry="14" fill="#BBDEFB"/>
+<circle cx="32" cy="-18" r="21" fill="#42A5F5" stroke="#1565C0" stroke-width="3"/>
+<circle cx="37" cy="-22" r="5.5" fill="#222"/><circle cx="38.5" cy="-24" r="1.8" fill="#fff"/>
+<path d="M51 -18 L70 -13 L51 -7Z" fill="#FFA000" stroke="#E65100" stroke-width="2" stroke-linejoin="round"/>
+<path class="flap" d="M-8 -6 Q-22 -62 22 -50 Q12 -22 -8 -6Z" fill="#1E88E5" stroke="#1565C0" stroke-width="3"/></g>`;
+}
+function catHead(){
+  return `<path d="M-40 -20 L-44 -74 L-6 -42Z" fill="#FFA726" stroke="#E65100" stroke-width="4" stroke-linejoin="round"/>
+<path d="M40 -20 L44 -74 L6 -42Z" fill="#FFA726" stroke="#E65100" stroke-width="4" stroke-linejoin="round"/>
+<path d="M-34 -32 L-37 -62 L-15 -43Z" fill="#F8BBD0"/><path d="M34 -32 L37 -62 L15 -43Z" fill="#F8BBD0"/>
+<circle cx="0" cy="0" r="46" fill="#FFA726" stroke="#E65100" stroke-width="4"/>
+<path d="M-8 -44 L-5 -31 M8 -44 L5 -31 M0 -46 L0 -33" stroke="#E65100" stroke-width="4" stroke-linecap="round"/>
+<ellipse cx="-17" cy="-6" rx="7" ry="9" fill="#2d2d2d"/><ellipse cx="17" cy="-6" rx="7" ry="9" fill="#2d2d2d"/>
+<circle cx="-15" cy="-9" r="2.4" fill="#fff"/><circle cx="19" cy="-9" r="2.4" fill="#fff"/>
+<path d="M-6 8 L6 8 L0 15Z" fill="#F06292"/>
+<path d="M0 15 Q-7 24 -14 18 M0 15 Q7 24 14 18" stroke="#5D4037" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M-22 12 L-52 5 M-22 18 L-52 21 M22 12 L52 5 M22 18 L52 21" stroke="#5D4037" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="-27" cy="12" r="5" fill="#FF8A80" opacity=".6"/><circle cx="27" cy="12" r="5" fill="#FF8A80" opacity=".6"/>`;
+}
+function cat(x,y,s){
+  return `<g transform="translate(${x} ${y}) scale(${s||1})">
+<path class="wag" d="M36 72 Q98 68 88 8" stroke="#FFA726" stroke-width="15" fill="none" stroke-linecap="round"/>
+<ellipse cx="0" cy="52" rx="48" ry="46" fill="#FFA726" stroke="#E65100" stroke-width="4"/>
+<ellipse cx="0" cy="62" rx="26" ry="30" fill="#FFE0B2"/>
+<ellipse cx="-22" cy="96" rx="16" ry="9" fill="#FFB74D" stroke="#E65100" stroke-width="3"/>
+<ellipse cx="22" cy="96" rx="16" ry="9" fill="#FFB74D" stroke="#E65100" stroke-width="3"/>
+${catHead()}</g>`;
+}
+function milk(x,y,s){
+  return `<g transform="translate(${x} ${y}) scale(${s||1})">
+<path d="M-58 0 Q-52 42 0 44 Q52 42 58 0Z" fill="#42A5F5" stroke="#1565C0" stroke-width="3"/>
+<ellipse cx="0" cy="0" rx="58" ry="14" fill="#90CAF9" stroke="#1565C0" stroke-width="3"/>
+<ellipse cx="0" cy="1" rx="50" ry="10" fill="#FFFFFF"/>
+<ellipse cx="-18" cy="-1" rx="10" ry="3" fill="#E3F2FD"/>
+<text x="0" y="31" text-anchor="middle" font-size="19" font-weight="900" fill="#fff" font-family="Arial, sans-serif">СҮТ</text></g>`;
+}
+function apple(x,y,s,col,dark){
+  col = col || '#EF5350'; dark = dark || '#C62828';
+  return `<g transform="translate(${x} ${y}) scale(${s||1})">
+<path d="M0 -30 Q-4 -46 4 -56" stroke="#6D4C41" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M4 -44 Q24 -62 36 -40 Q16 -32 4 -44Z" fill="#66BB6A" stroke="#388E3C" stroke-width="2"/>
+<path d="M0 -26 C-20 -42 -52 -34 -52 0 C-52 30 -28 52 -12 48 C-6 46 6 46 12 48 C28 52 52 30 52 0 C52 -34 20 -42 0 -26Z" fill="${col}" stroke="${dark}" stroke-width="3"/>
+<ellipse cx="-26" cy="-10" rx="7" ry="13" fill="#fff" opacity=".45" transform="rotate(20 -26 -10)"/>
+${face(4,8,30,'#3E2723')}</g>`;
+}
+function banana(){
+  return svg('-65 -65 130 130',`<path d="M-52 -26 Q-50 34 6 40 Q44 42 58 10 Q50 14 40 18 Q4 28 -20 4 Q-34 -12 -40 -30Z" fill="#FFE135" stroke="#F9A825" stroke-width="4" stroke-linejoin="round"/>
+<path d="M-52 -26 L-50 -40 L-40 -38 L-40 -30Z" fill="#6D4C41"/><circle cx="58" cy="10" r="4.5" fill="#6D4C41"/>
+<path d="M-42 -4 Q-30 26 4 32" stroke="#FFF59D" stroke-width="5" fill="none" stroke-linecap="round"/>`);
+}
+function strawberry(){
+  var seeds=[[-20,-8],[0,-14],[20,-8],[-28,12],[-8,8],[12,10],[30,10],[-14,28],[6,30],[-2,44],[22,28]].map(function(p){return `<ellipse cx="${p[0]}" cy="${p[1]}" rx="2.6" ry="4" fill="#FFF59D"/>`;}).join('');
+  return svg('-65 -65 130 130',`<path d="M0 52 C-30 42 -48 10 -44 -14 C-40 -34 -16 -36 0 -28 C16 -36 40 -34 44 -14 C48 10 30 42 0 52Z" fill="#E53935" stroke="#B71C1C" stroke-width="4"/>${seeds}
+<path d="M0 -28 L-28 -40 L-12 -30 L-20 -52 L-2 -34 L0 -58 L6 -34 L22 -52 L12 -30 L28 -40Z" fill="#43A047" stroke="#2E7D32" stroke-width="2.5" stroke-linejoin="round"/>`);
+}
+function greenApple(){ return svg('-65 -65 130 130', apple(0,4,1.05,'#8BC34A','#558B2F')); }
+function bus(){
+  return svg('-72 -58 144 112',`
+<rect x="-64" y="-42" width="128" height="72" rx="16" fill="#FFCA28" stroke="#E65100" stroke-width="4"/>
+<rect x="-54" y="-32" width="26" height="24" rx="5" fill="#B3E5FC" stroke="#0277BD" stroke-width="3"/>
+<rect x="-22" y="-32" width="26" height="24" rx="5" fill="#B3E5FC" stroke="#0277BD" stroke-width="3"/>
+<rect x="10" y="-32" width="24" height="24" rx="5" fill="#B3E5FC" stroke="#0277BD" stroke-width="3"/>
+<rect x="40" y="-32" width="16" height="52" rx="4" fill="#B3E5FC" stroke="#0277BD" stroke-width="3"/>
+<rect x="-64" y="4" width="104" height="9" fill="#FF7043"/>
+<circle cx="59" cy="20" r="4" fill="#FFF59D" stroke="#F57F17" stroke-width="2"/>
+<circle cx="-36" cy="32" r="15" fill="#37474F"/><circle cx="-36" cy="32" r="6" fill="#CFD8DC"/>
+<circle cx="32" cy="32" r="15" fill="#37474F"/><circle cx="32" cy="32" r="6" fill="#CFD8DC"/>`);
+}
+var FACE_VB = '-70 -100 140 160';
+function dogHead(){
+  return `<ellipse cx="-42" cy="-6" rx="17" ry="34" fill="#795548" transform="rotate(18 -42 -6)"/>
+<ellipse cx="42" cy="-6" rx="17" ry="34" fill="#795548" transform="rotate(-18 42 -6)"/>
+<circle cx="0" cy="0" r="46" fill="#D7A86E" stroke="#795548" stroke-width="4"/>
+<ellipse cx="19" cy="-17" rx="14" ry="12" fill="#A1887F" opacity=".6"/>
+<ellipse cx="0" cy="20" rx="25" ry="18" fill="#FFF3E0"/>
+<circle cx="-17" cy="-12" r="6.5" fill="#2d2d2d"/><circle cx="17" cy="-12" r="6.5" fill="#2d2d2d"/>
+<circle cx="-15" cy="-14" r="2" fill="#fff"/><circle cx="19" cy="-14" r="2" fill="#fff"/>
+<ellipse cx="0" cy="8" rx="10" ry="7" fill="#3E2723"/>
+<path d="M0 15 Q-9 26 -16 19 M0 15 Q9 26 16 19" stroke="#3E2723" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+<path d="M-7 23 Q0 40 7 23Z" fill="#F06292" stroke="#C2185B" stroke-width="2"/>`;
+}
+function frogHead(){
+  return `<circle cx="-24" cy="-26" r="19" fill="#66BB6A" stroke="#2E7D32" stroke-width="3"/>
+<circle cx="24" cy="-26" r="19" fill="#66BB6A" stroke="#2E7D32" stroke-width="3"/>
+<ellipse cx="0" cy="10" rx="54" ry="38" fill="#66BB6A" stroke="#2E7D32" stroke-width="3"/>
+<circle cx="-24" cy="-27" r="11" fill="#fff"/><circle cx="24" cy="-27" r="11" fill="#fff"/>
+<circle cx="-22" cy="-26" r="6" fill="#222"/><circle cx="26" cy="-26" r="6" fill="#222"/>
+<path d="M-30 14 Q0 40 30 14" stroke="#1B5E20" stroke-width="4" fill="none" stroke-linecap="round"/>
+<circle cx="-36" cy="8" r="7" fill="#FF8A80" opacity=".6"/><circle cx="36" cy="8" r="7" fill="#FF8A80" opacity=".6"/>
+<circle cx="-6" cy="-2" r="2" fill="#2E7D32"/><circle cx="6" cy="-2" r="2" fill="#2E7D32"/>`;
+}
+function rabbitHead(){
+  return `<ellipse cx="-18" cy="-58" rx="13" ry="34" fill="#F3F3F3" stroke="#9E9E9E" stroke-width="3"/>
+<ellipse cx="18" cy="-58" rx="13" ry="34" fill="#F3F3F3" stroke="#9E9E9E" stroke-width="3"/>
+<ellipse cx="-18" cy="-56" rx="6" ry="24" fill="#F8BBD0"/><ellipse cx="18" cy="-56" rx="6" ry="24" fill="#F8BBD0"/>
+<circle cx="0" cy="6" r="42" fill="#F3F3F3" stroke="#9E9E9E" stroke-width="3"/>
+<circle cx="-15" cy="-2" r="6" fill="#2d2d2d"/><circle cx="15" cy="-2" r="6" fill="#2d2d2d"/>
+<circle cx="-13" cy="-4" r="2" fill="#fff"/><circle cx="17" cy="-4" r="2" fill="#fff"/>
+<ellipse cx="0" cy="12" rx="6" ry="4.5" fill="#F06292"/>
+<path d="M0 16 Q-6 24 -12 20 M0 16 Q6 24 12 20" stroke="#5D4037" stroke-width="3" fill="none" stroke-linecap="round"/>
+<rect x="-5" y="22" width="10" height="9" rx="2" fill="#fff" stroke="#BDBDBD" stroke-width="1.5"/>
+<circle cx="-26" cy="14" r="6" fill="#FF8A80" opacity=".6"/><circle cx="26" cy="14" r="6" fill="#FF8A80" opacity=".6"/>`;
+}
+function catPic(){ return svg(FACE_VB, `<g transform="translate(0 -4)">${catHead()}</g>`); }
+function dogPic(){ return svg(FACE_VB, `<g transform="translate(0 -12)">${dogHead()}</g>`); }
+function rabbitPic(){ return svg(FACE_VB, `<g transform="translate(0 0)">${rabbitHead()}</g>`); }
+function frogPic(){ return svg(FACE_VB, `<g transform="translate(0 -14) scale(1.1)">${frogHead()}</g>`); }
+function arrow(dir,col){
+  var rot={right:0,left:180,up:-90,down:90}[dir];
+  return svg('-50 -50 100 100',`<g transform="rotate(${rot})"><path d="M-38 -14 L6 -14 L6 -34 L42 0 L6 34 L6 14 L-38 14Z" fill="${col}" stroke="#33275A" stroke-width="5" stroke-linejoin="round"/></g>`);
+}
+function bigUpArrow(x,y,s){
+  return `<g transform="translate(${x} ${y}) scale(${s||1})"><path d="M0 -92 L52 -30 L20 -30 L20 82 L-20 82 L-20 -30 L-52 -30Z" fill="#FFD54F" stroke="#F57F17" stroke-width="6" stroke-linejoin="round"/></g>`;
+}
+function rainbowSVG(){
+  var cols=['#EF5350','#FFA726','#FFEE58','#66BB6A','#42A5F5','#AB47BC'];
+  return svg('0 0 300 160', cols.map(function(c,i){return `<path d="M${20+i*14} 160 A${130-i*14} ${130-i*14} 0 0 1 ${280-i*14} 160" stroke="${c}" stroke-width="14" fill="none"/>`;}).join(''));
+}
+function butterflySVG(c1,c2){
+  return svg('-50 -40 100 80',`<g class="flap2"><ellipse cx="-20" cy="-10" rx="22" ry="18" fill="${c1}"/><ellipse cx="-15" cy="16" rx="14" ry="12" fill="${c2}"/>
+<ellipse cx="20" cy="-10" rx="22" ry="18" fill="${c1}"/><ellipse cx="15" cy="16" rx="14" ry="12" fill="${c2}"/></g>
+<rect x="-4" y="-22" width="8" height="44" rx="4" fill="#4E342E"/><path d="M-2 -22 Q-8 -34 -14 -37 M2 -22 Q8 -34 14 -37" stroke="#4E342E" stroke-width="2.5" fill="none" stroke-linecap="round"/>`);
+}
+function balloonSVG(c){
+  return svg('-30 -40 60 112',`<path d="M0 34 Q-8 52 4 70" stroke="#90A4AE" stroke-width="2" fill="none"/><ellipse cx="0" cy="0" rx="26" ry="32" fill="${c}"/><path d="M-5 31 L5 31 L0 38Z" fill="${c}"/><ellipse cx="-9" cy="-12" rx="6" ry="10" fill="#fff" opacity=".5"/>`);
+}
+function trophySVG(){
+  return svg('-110 -130 220 260',`
+<path d="M-56 -78 Q-106 -78 -98 -36 Q-90 4 -38 8" stroke="#F9A825" stroke-width="15" fill="none" stroke-linecap="round"/>
+<path d="M56 -78 Q106 -78 98 -36 Q90 4 38 8" stroke="#F9A825" stroke-width="15" fill="none" stroke-linecap="round"/>
+<path d="M-64 -104 L64 -104 Q64 18 0 36 Q-64 18 -64 -104Z" fill="#FFD54F" stroke="#F9A825" stroke-width="6" stroke-linejoin="round"/>
+<path d="M-42 -90 Q-46 -24 -20 2" stroke="#FFF8E1" stroke-width="10" fill="none" stroke-linecap="round" opacity=".85"/>
+${star(0,-46,30,{fill:'#FFF59D',stroke:'#F9A825',face:true})}
+<rect x="-14" y="34" width="28" height="36" fill="#FBC02D" stroke="#F9A825" stroke-width="5"/>
+<rect x="-56" y="68" width="112" height="22" rx="8" fill="#FFB300" stroke="#F57F17" stroke-width="5"/>
+<rect x="-76" y="88" width="152" height="36" rx="10" fill="#8D6E63" stroke="#5D4037" stroke-width="5"/>
+<text x="0" y="113" text-anchor="middle" font-size="19" font-weight="900" fill="#FFF8E1" font-family="Arial, sans-serif">ЖЕҢІМПАЗ</text>`);
+}
+function medalSVG(){
+  return svg('-60 -92 120 172',`<path d="M-42 -90 L-12 -90 L20 -12 L-10 -12Z" fill="#42A5F5" stroke="#1565C0" stroke-width="3"/>
+<path d="M42 -90 L12 -90 L-20 -12 L10 -12Z" fill="#EF5350" stroke="#B71C1C" stroke-width="3"/>
+<circle cx="0" cy="30" r="46" fill="#FFD54F" stroke="#F9A825" stroke-width="6"/>
+<circle cx="0" cy="30" r="35" fill="none" stroke="#FFF59D" stroke-width="4"/>${star(0,31,25,{fill:'#FFB300',stroke:'#E65100'})}`);
+}
+function raysSVG(){
+  var p='';
+  for(var i=0;i<16;i++){
+    var a1=i*Math.PI/8, a2=a1+Math.PI/16;
+    p += `<path d="M0 0 L${F(200*Math.cos(a1))} ${F(200*Math.sin(a1))} L${F(200*Math.cos(a2))} ${F(200*Math.sin(a2))}Z" fill="#FFE082"/>`;
+  }
+  return svg('-200 -200 400 400', `<circle r="200" fill="#FFF8E1"/><g class="spin slow">${p}</g>`);
+}
+
+/* Бөлім белгішелері */
+function icoSpace(){
+  var cols=['#EF5350','#66BB6A','#AB47BC','#FFA726'], rots=[-90,0,90,180];
+  return svg('-100 -100 200 200', `<circle r="92" fill="#fff" stroke="#0288D1" stroke-width="6"/>` +
+    rots.map(function(r,i){return `<g transform="rotate(${r})"><path d="M32 -16 L58 -16 L58 -32 L86 0 L58 32 L58 16 L32 16Z" fill="${cols[i]}" stroke="#33275A" stroke-width="4" stroke-linejoin="round"/></g>`;}).join('') + ball(0,0,30));
+}
+function icoMath(){
+  function b(x,y,c,d,n){return `<g transform="translate(${x} ${y})"><rect x="-34" y="-34" width="68" height="68" rx="14" fill="${c}" stroke="${d}" stroke-width="5"/><text x="0" y="17" text-anchor="middle" font-size="48" font-weight="900" fill="#fff" stroke="${d}" stroke-width="2" font-family="Arial, sans-serif">${n}</text></g>`;}
+  return svg('-100 -100 200 200', `<circle r="96" fill="#fff" opacity=".7"/>${b(-50,40,'#42A5F5','#1565C0',1)}${b(30,40,'#EF5350','#B71C1C',2)}${b(-10,-34,'#66BB6A','#2E7D32',3)}${apple(60,-42,.55)}`);
+}
+function icoFocus(){
+  return svg('-100 -100 200 200', `<line x1="30" y1="30" x2="80" y2="80" stroke="#8D6E63" stroke-width="22" stroke-linecap="round"/>
+<circle cx="-12" cy="-12" r="62" fill="#E1F5FE" stroke="#AD1457" stroke-width="12"/>${star(-12,-12,38,{face:true,fill:'#F48FB1',stroke:'#AD1457'})}
+<path d="M-50 -48 Q-40 -64 -20 -68" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round"/>`);
+}
+
+var MASCOT = svg('-80 -80 160 160', star(0,4,74,{face:true}));
+var MINI_STAR = svg('-55 -55 110 110', star(0,0,50));
+var FACE_STAR = svg('-55 -55 110 110', star(0,0,50,{face:true}));
+var SPARK = svg('-55 -55 110 110', `<path d="M0 -50 Q8 -8 50 0 Q8 8 0 50 Q-8 8 -50 0 Q-8 -8 0 -50Z" fill="#FFF176" stroke="#FFB300" stroke-width="5"/>`);
+
+/* Тапсырма көріністері */
+function sceneLeftRight(){
+  return svg('0 0 600 340', `<rect width="600" height="340" fill="#CDEFFF"/>${cloud(50,70,1)}${cloud(450,52,.8)}${ground(600,340)}
+<g class="pi">${kid(180,196,1)}</g><g class="pi d2"><g class="bounce">${ball(440,262,42)}</g></g>`);
+}
+function sceneSunFlower(){
+  return svg('0 0 600 360', `<rect width="600" height="360" fill="#CDEFFF"/>${cloud(60,64,.9)}${cloud(440,96,.75)}${ground(600,360)}
+<g class="pi">${sun(300,80,42)}</g><g class="pi d2"><g class="sway">${flower(300,318,1.05)}</g></g>`);
+}
+function sceneBird(){
+  return svg('0 0 600 360', `<rect width="600" height="360" fill="#CDEFFF"/>${cloud(250,40,.8)}${cloud(40,270,.7)}
+<g class="pulse">${bigUpArrow(95,200,1)}</g><g class="pulse b">${bigUpArrow(505,200,1)}</g>
+<g class="rise"><path d="M262 352 Q232 302 284 252" stroke="#fff" stroke-width="7" stroke-dasharray="4 16" fill="none" stroke-linecap="round"/>${bird(305,195,1.15)}</g>`);
+}
+function sceneCat(){
+  return svg('0 0 600 360', `<rect width="600" height="360" fill="#FFF3E0"/><rect y="250" width="600" height="110" fill="#FFCC80"/>
+<ellipse cx="300" cy="305" rx="230" ry="42" fill="#F8BBD0" opacity=".7"/>
+<g class="pi">${ball(364,176,30)}</g><g class="pi d2">${cat(300,150,1)}</g><g class="pi d3">${milk(300,298,1.05)}</g>`);
+}
+function sceneApples(){
+  return svg('0 0 600 300', `<rect width="600" height="300" fill="#FFF8E1"/><ellipse cx="300" cy="248" rx="235" ry="34" fill="#fff" stroke="#FFCC80" stroke-width="5"/>
+<g class="pi">${apple(205,165,1.45)}</g><g class="pi d2">${apple(395,165,1.45)}</g>`);
+}
+function sceneStars(){
+  var dots='';
+  [[40,40],[120,250],[560,60],[520,250],[300,30],[80,150],[580,160],[230,270],[380,270]].forEach(function(p){dots+=`<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="#fff" opacity=".8"/>`;});
+  return svg('0 0 600 300', `<rect width="600" height="300" fill="#3949AB"/>${dots}
+<g class="tw">${star(140,150,72,{face:true})}</g><g class="tw b">${star(300,150,72,{face:true})}</g><g class="tw c">${star(460,150,72,{face:true})}</g>`);
+}
+
+var SHAPE_CIR = svg('-60 -60 120 120', `<circle r="50" fill="#F48FB1" stroke="#C2185B" stroke-width="6"/>${face(0,2,40)}`);
+var SHAPE_TRI = svg('-60 -60 120 120', `<path d="M0 -52 L54 44 L-54 44Z" fill="#81C784" stroke="#2E7D32" stroke-width="6" stroke-linejoin="round"/>${face(0,16,30)}`);
+var SHAPE_SQ  = svg('-60 -60 120 120', `<rect x="-47" y="-47" width="94" height="94" rx="6" fill="#64B5F6" stroke="#1565C0" stroke-width="6"/>${face(0,2,40)}`);
+var SMALL_STAR = svg('-60 -60 120 120', star(0,4,24,{face:true}));
+var BIG_STAR   = svg('-60 -60 120 120', star(0,4,56,{face:true}));
+
+/* =====================================================================
+   3. ТАПСЫРМАЛАР (3 бөлім × 4 тапсырма)
+   ===================================================================== */
+var SECTIONS = [
+ { title:'Кеңістікте бағдарлау', goal:'Оң мен сол, жоғары мен төмен',
+   c1:'#29B6F6', c2:'#E1F5FE', c3:'#0277BD', sec:'#81D4FA', secD:'#0288D1', secS:'#E1F5FE', icon:icoSpace, decor:'sky',
+   tasks:[
+    {title:'Оң және сол', q:'Доп баланың қай жағында?', layout:'text', scene:sceneLeftRight,
+     answers:[{t:'Оң жағында', ic:arrow('right','#81C784'), ok:true},{t:'Сол жағында', ic:arrow('left','#FFB74D')}]},
+    {title:'Жоғары және төмен', q:'Күн гүлдің қай жағында?', layout:'text', scene:sceneSunFlower,
+     answers:[{t:'Жоғарыда', ic:arrow('up','#81C784'), ok:true},{t:'Төменде', ic:arrow('down','#E57373')}]},
+    {title:'Бағытты анықта', q:'Құс қай бағытқа ұшып бара жатыр?', layout:'text', scene:sceneBird,
+     answers:[{t:'Жоғары', ic:arrow('up','#81C784'), ok:true},{t:'Төмен', ic:arrow('down','#E57373')},{t:'Оңға', ic:arrow('right','#64B5F6')}]},
+    {title:'Алдында және артында', q:'Мысықтың алдында не тұр?', layout:'text', scene:sceneCat,
+     answers:[{t:'Сүт', ic:svg('-64 -20 128 66',milk(0,0,1)), ok:true},{t:'Доп', ic:svg('-45 -45 90 90',ball(0,0,40))},{t:'Гүл', ic:svg('-45 -160 90 165',flower(0,0,1))}]}
+   ]},
+ { title:'Математикалық түсініктер', goal:'Санаймын және салыстырамын',
+   c1:'#FFB300', c2:'#FFF8E1', c3:'#E65100', sec:'#FFD54F', secD:'#F57F17', secS:'#FFF8E1', icon:icoMath, decor:'math',
+   tasks:[
+    {title:'Заттарды сана', q:'Неше алма бар?', layout:'nums', scene:sceneApples,
+     answers:[{t:'1'},{t:'2', ok:true},{t:'3'}]},
+    {title:'Сандарды салыстыр', q:'Қай сан үлкен?', layout:'nums', scene:null,
+     answers:[{t:'2', dots:2},{t:'5', dots:5, ok:true}]},
+    {title:'Жұлдыздарды сана', q:'Неше жұлдыз бар?', layout:'nums', scene:sceneStars,
+     answers:[{t:'2'},{t:'3', ok:true},{t:'4'}]},
+    {title:'Геометриялық пішіндер', q:'Дөңгелек пішінді тап!', layout:'pics', scene:null,
+     answers:[{pic:SHAPE_CIR, aria:'шеңбер', ok:true},{pic:SHAPE_TRI, aria:'үшбұрыш'},{pic:SHAPE_SQ, aria:'шаршы'}]}
+   ]},
+ { title:'Зейінімді шоғырландырамын', goal:'Мұқият қарап, дұрысын табамын',
+   c1:'#EC407A', c2:'#FCE4EC', c3:'#AD1457', sec:'#F48FB1', secD:'#AD1457', secS:'#FCE4EC', icon:icoFocus, decor:'garden',
+   tasks:[
+    {title:'Артық затты тап', q:'Артық затты тап!', layout:'pics', scene:null,
+     answers:[{pic:catPic(), label:'Мысық'},{pic:dogPic(), label:'Ит'},{pic:rabbitPic(), label:'Қоян'},{pic:bus(), label:'Автобус', ok:true}]},
+    {title:'Қызыл затты тап', q:'Қызыл түсті затты тап!', layout:'pics', scene:null,
+     answers:[{pic:banana(), label:'Банан'},{pic:strawberry(), label:'Құлпынай', ok:true},{pic:greenApple(), label:'Алма'}]},
+    {title:'Бірдей суреттерді тап', q:'Бірдей суреттерді тап!', layout:'pics', mode:'pair', scene:null,
+     answers:[{pic:rabbitPic(), kind:'rabbit', aria:'қоян'},{pic:frogPic(), kind:'frog', aria:'бақа'},{pic:dogPic(), kind:'dog', aria:'ит'},{pic:frogPic(), kind:'frog', aria:'бақа'}]},
+    {title:'Үлкен жұлдызды тап', q:'Үлкен жұлдызды таңда!', layout:'pics', scene:null,
+     answers:[{pic:SMALL_STAR, aria:'кішкентай жұлдыз'},{pic:BIG_STAR, aria:'үлкен жұлдыз', ok:true},{pic:SMALL_STAR, aria:'кішкентай жұлдыз'}]}
+   ]}
+];
+
+var PRAISE = ['ЖАРАЙСЫҢ!','ӨТЕ ЖАҚСЫ!','КЕРЕМЕТ!','ТАМАША!','СЕН АҚЫЛДЫСЫҢ!','ЖЕҢІС СЕНІКІ!'];
+var ENCOURAGE = ['Тағы бір рет байқап көр!','Сенің қолыңнан келеді!','Қайта ойланып көр!'];
+var TEXT_PAL = [['#E1F5FE','#29B6F6'],['#FCE4EC','#EC407A'],['#E8F5E9','#43A047'],['#EDE7F6','#7E57C2']];
+var PIC_PAL = ['#FFFFFF','#9575CD'];
+
+/* =====================================================================
+   4. БАПТАУЛАР (браузерде сақталады)
+   ===================================================================== */
+var KEY = 'oiynaimyn-settings-v2';
+var DEF = {theme:'color', fs:1, big:false, noanim:false, music:true, musicVol:0.22, clapVol:0.6};
+var saved = null;
+try { saved = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch(e) { saved = null; }
+var settings = Object.assign({}, DEF, saved || {});
+if(!saved){ try { if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) settings.noanim = true; } catch(e){} }
+function saveSettings(){ try { localStorage.setItem(KEY, JSON.stringify(settings)); } catch(e){} }
+var FS = [0.85, 1, 1.15, 1.3, 1.5, 1.7];
+
+/* =====================================================================
+   5. ОЙЫН КҮЙІ
+   ===================================================================== */
+var state = { screen:'home', sec:0, task:0, done:null };
+function resetProgress(){ state.done = SECTIONS.map(function(){ return [false,false,false,false]; }); }
+resetProgress();
+function totalStars(){ var n=0; state.done.forEach(function(d){ d.forEach(function(x){ if(x) n++; }); }); return n; }
+function secDone(i){ return state.done[i].every(Boolean); }
+function allDone(){ return state.done.every(function(d){ return d.every(Boolean); }); }
+var app = $('#app');
+
+/* =====================================================================
+   6. ДЫБЫС ЖҮЙЕСІ (Web Audio API, интернетсіз)
+   - Фондық музыка: И.С. Бах, «C-dur прелюдиясы» (BWV 846), фортепиано
+   - Дұрыс жауап: шынайы қол шапалақтау (1,7 сек)
+   - Қате жауап: дыбыс жоқ
+   ===================================================================== */
+var audio = (function(){
+  var ctx = null, comp, reverb, musicGain, clapGain, noiseBuf;
+  var timer = null, nextT = 0, step = 0, playing = false, lastClapEnd = 0;
+
+  function midiFreq(name){
+    var m = /^([A-G])([#b]?)(\d)$/.exec(name);
+    var base = {C:0,D:2,E:4,F:5,G:7,A:9,B:11}[m[1]] + (m[2]==='#'?1:(m[2]==='b'?-1:0));
+    var midi = (parseInt(m[3],10)+1)*12 + base;
+    return 440*Math.pow(2,(midi-69)/12);
+  }
+  /* Бах прелюдиясының 19 тактісі — әр тактіде 5 нотадан тұратын аккорд */
+  var BARS = [
+    'C4 E4 G4 C5 E5','C4 D4 A4 D5 F5','B3 D4 G4 D5 F5','C4 E4 G4 C5 E5',
+    'C4 E4 A4 E5 A5','C4 D4 F#4 A4 D5','B3 D4 G4 D5 G5','B3 C4 E4 G4 C5',
+    'A3 C4 E4 G4 C5','D3 A3 D4 F#4 C5','G3 B3 D4 G4 B4','G3 Bb3 E4 G4 C#5',
+    'F3 A3 D4 A4 D5','F3 Ab3 D4 F4 B4','E3 G3 C4 G4 C5','E3 F3 A3 C4 F4',
+    'D3 F3 A3 C4 F4','G2 D3 G3 B3 F4','C3 E3 G3 C4 E4'
+  ].map(function(b){ return b.split(' ').map(midiFreq); });
+  var PAT = [0,1,2,3,4,2,3,4, 0,1,2,3,4,2,3,4];
+  var STEP = 0.26; /* баяу, тыныш қарқын */
+
+  function makeNoise(c, sec){
+    var len = Math.floor(c.sampleRate*(sec||2)), b = c.createBuffer(1,len,c.sampleRate), d = b.getChannelData(0);
+    for(var i=0;i<len;i++) d[i] = Math.random()*2-1;
+    return b;
+  }
+  function makeImpulse(c, sec, decay){
+    var len = Math.floor(c.sampleRate*sec), b = c.createBuffer(2,len,c.sampleRate);
+    for(var ch=0; ch<2; ch++){
+      var d = b.getChannelData(ch);
+      for(var i=0;i<len;i++) d[i] = (Math.random()*2-1)*Math.pow(1-i/len, decay);
+    }
+    return b;
+  }
+
+  /* Жұмсақ фортепиано тембрі: обертондар + балғаның соққысы + табиғи сөну */
+  function pianoNote(c, dest, f, t, vel, len){
+    var out = c.createGain(); out.gain.value = vel; out.connect(dest);
+    var sustain = Math.max(1.3, Math.min(5, 4.4 - Math.log(f/130)/Math.LN2*0.9));
+    var stopAt = t + Math.min(len, sustain) + 0.4;
+    var P = [[1,1],[2,.42],[3,.2],[4,.1],[5,.05],[6,.03]];
+    for(var k=0;k<P.length;k++){
+      var n = P[k][0], a = P[k][1], fr = f*n*(1+0.0003*n*n);
+      if(fr > 8000) break;
+      var o = c.createOscillator(); o.type = 'sine'; o.frequency.value = fr;
+      var g = c.createGain();
+      g.gain.setValueAtTime(0, t);
+      g.gain.linearRampToValueAtTime(a, t+0.006);
+      g.gain.setTargetAtTime(a*0.38, t+0.006, 0.07 + 0.03/n);
+      g.gain.setTargetAtTime(0, t+0.25, (sustain/(1+0.7*(n-1)))/3.2);
+      g.gain.setTargetAtTime(0, Math.max(t+0.3, Math.min(t+len, stopAt-0.35)), 0.09);
+      o.connect(g); g.connect(out); o.start(t); o.stop(stopAt + 0.1);
+    }
+  }
+
+  /* Бір рет қол шапалақтау: 1–3 микро-соққы + қысқа «денесі» */
+  function clap(c, dest, noise, t, amp, freq){
+    var src = c.createBufferSource(); src.buffer = noise;
+    var hp = c.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 650;
+    var bp = c.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = freq; bp.Q.value = .8 + Math.random()*.7;
+    var g = c.createGain(); g.gain.setValueAtTime(0, t);
+    var tt = t, k = 1 + Math.floor(Math.random()*3);
+    for(var i=0;i<k;i++){
+      g.gain.setValueAtTime(amp*.5, tt); g.gain.setTargetAtTime(0, tt+.0008, .0025);
+      tt += .005 + Math.random()*.006;
+    }
+    g.gain.setValueAtTime(amp, tt); g.gain.setTargetAtTime(0, tt+.0015, .016 + Math.random()*.018);
+    src.connect(hp); hp.connect(bp); bp.connect(g); g.connect(dest);
+    src.start(t, Math.random()*(noise.duration-.3), .24);
+  }
+  /* Көпшіліктің қол шапалақтауы: 14 «адам», әрқайсысы өз қарқынымен */
+  function buildApplause(c, dest, t0, dur, noise){
+    var people = 14;
+    for(var p=0;p<people;p++){
+      var pg = c.createGain(); pg.gain.value = (.45 + Math.random()*.45) * 3.2;
+      if(c.createStereoPanner){ var pan = c.createStereoPanner(); pan.pan.value = (Math.random()*2-1)*.75; pg.connect(pan); pan.connect(dest); }
+      else pg.connect(dest);
+      var bright = 1000 + Math.random()*1500, rate = 3.6 + Math.random()*2.4, t = t0 + Math.random()*.2;
+      while(t < t0 + dur){
+        var rel = (t-t0)/dur;
+        var env = rel < .12 ? .55 + rel*3.75 : (rel > .6 ? Math.max(0, 1-(rel-.6)/.4) : 1);
+        clap(c, pg, noise, t, env*(.7 + Math.random()*.3), bright*(.9 + Math.random()*.2));
+        t += (1/rate)*(.85 + Math.random()*.3);
+      }
+    }
+    /* көпшілік «шуы» — жұмсақ фон */
+    var s = c.createBufferSource(); s.buffer = noise;
+    var bp = c.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 2200; bp.Q.value = .6;
+    var g = c.createGain();
+    g.gain.setValueAtTime(0, t0); g.gain.linearRampToValueAtTime(.06, t0+.15);
+    g.gain.setValueAtTime(.06, t0+dur*.6); g.gain.linearRampToValueAtTime(0, t0+dur);
+    s.connect(bp); bp.connect(g); g.connect(dest); s.start(t0); s.stop(t0+dur+.05);
+  }
+
+  function init(){
+    if(!ctx){
+      var C = window.AudioContext || window.webkitAudioContext;
+      if(!C) return null;
+      try { ctx = new C(); } catch(e){ ctx = null; return null; }
+      comp = ctx.createDynamicsCompressor();
+      comp.threshold.value = -12; comp.ratio.value = 4; comp.attack.value = .003; comp.release.value = .2;
+      comp.connect(ctx.destination);
+      reverb = ctx.createConvolver(); reverb.buffer = makeImpulse(ctx, 2.4, 3);
+      var rv = ctx.createGain(); rv.gain.value = .8; reverb.connect(rv); rv.connect(comp);
+      /* музыка арнасы */
+      musicGain = ctx.createGain(); musicGain.gain.value = 0;
+      var lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 4200;
+      musicGain.connect(lp); lp.connect(comp);
+      var ms = ctx.createGain(); ms.gain.value = .35; lp.connect(ms); ms.connect(reverb);
+      /* қол шапалақтау арнасы (бөлек деңгей) */
+      clapGain = ctx.createGain(); clapGain.gain.value = settings.clapVol;
+      clapGain.connect(comp);
+      var cs = ctx.createGain(); cs.gain.value = .16; clapGain.connect(cs); cs.connect(reverb);
+      noiseBuf = makeNoise(ctx, 2);
+    }
+    if(ctx.state === 'suspended'){ try { ctx.resume(); } catch(e){} }
+    return ctx;
+  }
+
+  function schedule(){
+    while(nextT < ctx.currentTime + 1.2){
+      var bar = BARS[Math.floor(step/16) % BARS.length], s = step % 16, f = bar[PAT[s]];
+      var len, vel;
+      if(s === 0 || s === 8){ len = STEP*8; vel = .2; }
+      else if(s === 1 || s === 9){ len = STEP*7; vel = .15; }
+      else { len = 1.5; vel = .12 + Math.random()*.015; }
+      pianoNote(ctx, musicGain, f, nextT + Math.random()*.006, vel, len);
+      nextT += STEP; step++;
+    }
+  }
+  function musicStart(){
+    if(!init() || playing) return;
+    playing = true;
+    nextT = ctx.currentTime + .12;
+    musicGain.gain.cancelScheduledValues(ctx.currentTime);
+    musicGain.gain.setTargetAtTime(settings.musicVol, ctx.currentTime, .5);
+    schedule();
+    timer = setInterval(schedule, 120);
+  }
+  function musicStop(){
+    if(!playing) return;
+    playing = false;
+    clearInterval(timer); timer = null;
+    musicGain.gain.cancelScheduledValues(ctx.currentTime);
+    musicGain.gain.setTargetAtTime(0, ctx.currentTime, .2);
+  }
+  function setMusicVol(v){ if(ctx && playing) musicGain.gain.setTargetAtTime(v, ctx.currentTime, .05); }
+  function setClapVol(v){ if(ctx) clapGain.gain.setTargetAtTime(v, ctx.currentTime, .03); }
+  function applause(){
+    if(!init()) return false;
+    var now = ctx.currentTime;
+    if(now < lastClapEnd - .4) return false; /* бір-бірінің үстіне қосылмасын */
+    buildApplause(ctx, clapGain, now + .03, 1.7, noiseBuf);
+    lastClapEnd = now + 1.75;
+    return true;
+  }
+  return {
+    init:init, musicStart:musicStart, musicStop:musicStop, setMusicVol:setMusicVol, setClapVol:setClapVol, applause:applause,
+    /* тексеруге арналған ақпарат */
+    status:function(){ return {ready:!!ctx, state:ctx?ctx.state:'none', playing:playing, step:step, musicGain:musicGain?musicGain.gain.value:0, clapGain:clapGain?clapGain.gain.value:0}; },
+    renderApplause:function(c, dest){ buildApplause(c, dest, .05, 1.7, makeNoise(c,2)); }
+  };
+})();
+window.OyynAudio = audio;
+
+/* =====================================================================
+   7. КОНФЕТТИ
+   ===================================================================== */
+var confetti = (function(){
+  var cv = $('#confetti'), cx = cv.getContext('2d'), parts = [], raf = 0, W = 0, H = 0;
+  var COLS = ['#FF5252','#FFD740','#69F0AE','#40C4FF','#E040FB','#FF6E40','#FFFF00','#FF80AB'];
+  function size(){
+    var dpr = Math.min(2, window.devicePixelRatio || 1);
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = Math.floor(W*dpr); cv.height = Math.floor(H*dpr);
+    cx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  size(); window.addEventListener('resize', size);
+  function starShape(r){
+    cx.beginPath();
+    for(var i=0;i<10;i++){ var rad = i%2 ? r*.45 : r, a = Math.PI/5*i - Math.PI/2; cx.lineTo(rad*Math.cos(a), rad*Math.sin(a)); }
+    cx.closePath(); cx.fill();
+  }
+  function tick(){
+    cx.clearRect(0,0,W,H);
+    parts = parts.filter(function(p){ return p.life < p.max && p.y < H+40; });
+    parts.forEach(function(p){
+      p.life++; p.vx *= .99; p.vy = Math.min(p.vy + p.g, 6.5); p.x += p.vx + Math.sin(p.life/12)*.6; p.y += p.vy; p.r += p.vr;
+      cx.save(); cx.translate(p.x,p.y); cx.rotate(p.r);
+      cx.globalAlpha = Math.max(0, Math.min(1,(p.max-p.life)/30));
+      cx.fillStyle = p.c;
+      if(p.sh === 0) cx.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);
+      else if(p.sh === 1){ cx.beginPath(); cx.arc(0,0,p.s/2.4,0,Math.PI*2); cx.fill(); }
+      else starShape(p.s/1.5);
+      cx.restore();
+    });
+    if(parts.length) raf = requestAnimationFrame(tick); else { raf = 0; cx.clearRect(0,0,W,H); }
+  }
+  function startLoop(){ if(!raf) raf = requestAnimationFrame(tick); }
+  return {
+    burst: function(x,y,n){
+      if(settings.noanim) return;
+      for(var i=0;i<n;i++){
+        var a = Math.random()*Math.PI*2, v = 3+Math.random()*9;
+        parts.push({x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-7,g:.22+Math.random()*.1,s:7+Math.random()*9,r:Math.random()*6,vr:(Math.random()-.5)*.3,c:COLS[i%COLS.length],sh:i%3,life:0,max:140+Math.random()*60});
+      }
+      startLoop();
+    },
+    rain: function(n){
+      if(settings.noanim) return;
+      for(var i=0;i<n;i++){
+        parts.push({x:Math.random()*W,y:-20-Math.random()*H*.6,vx:(Math.random()-.5)*2,vy:1+Math.random()*3,g:.05,s:7+Math.random()*9,r:Math.random()*6,vr:(Math.random()-.5)*.25,c:COLS[i%COLS.length],sh:i%3,life:0,max:320});
+      }
+      startLoop();
+    }
+  };
+})();
+
+/* =====================================================================
+   8. ҚОСЫМША ЭЛЕМЕНТТЕР: хабарлама, фон, жұлдыз санағы
+   ===================================================================== */
+var toastTmo = null;
+function toast(msg){
+  var t = $('#toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTmo); toastTmo = setTimeout(function(){ t.classList.remove('show'); }, 2600);
+}
+var decorKind = '';
+function setDecor(kind){
+  if(decorKind === kind) return; decorKind = kind;
+  var CL = svg('-24 -42 102 66', cloud(0,0,1));
+  function C(top,dur,delay,w,op){ return `<div class="d drift" style="top:${top}%;width:${w}px;animation-duration:${dur}s;animation-delay:-${delay}s;opacity:${op}">${CL}</div>`; }
+  function T(l,t,s,d,col){ return `<div class="d twinkle" style="left:${l}%;top:${t}%;width:${s}px;animation-delay:${d}s">${svg('-55 -55 110 110',star(0,0,50,{fill:col||'#FFF59D',stroke:'#FFD54F'}))}</div>`; }
+  var SUN = svg('-75 -75 150 150', sun(0,0,40));
+  var h = '';
+  if(kind === 'home'){
+    h = `<div class="d float" style="left:1.5%;top:84px;width:110px">${SUN}</div>` + C(16,70,10,170,.9) + C(52,95,45,130,.75) + C(32,120,90,110,.6) +
+        `<div class="d" style="right:-60px;bottom:-40px;width:340px;opacity:.55">${rainbowSVG()}</div>` +
+        T(90,14,34,0) + T(5,62,28,1.1,'#F8BBD0') + T(93,50,24,.6,'#B3E5FC') + T(12,88,30,1.6,'#C5E1A5');
+  } else if(kind === 'sky'){
+    h = `<div class="d float" style="right:2%;top:90px;width:120px">${SUN}</div>` + C(12,60,5,180,.95) + C(40,85,30,140,.8) + C(70,110,70,120,.7) + C(25,140,100,100,.6);
+  } else if(kind === 'math'){
+    var nums = [['1','#FF7043',3,20],['2','#42A5F5',92,26],['3','#66BB6A',5,68],['4','#AB47BC',90,74],['5','#FFA000',48,90]];
+    h = nums.map(function(n,i){ return `<div class="d float decnum" style="left:${n[2]}%;top:${n[3]}%;color:${n[1]};animation-delay:-${i*1.3}s">${n[0]}</div>`; }).join('') +
+        `<div class="d float" style="left:88%;top:8%;width:70px;opacity:.5;animation-delay:-2s">${SHAPE_TRI}</div>` +
+        `<div class="d float" style="left:2%;top:42%;width:64px;opacity:.5;animation-delay:-4s">${SHAPE_CIR}</div>` +
+        T(80,40,30,.3) + T(18,10,26,1.2);
+  } else if(kind === 'garden'){
+    var fl = [[1,'#F06292'],[7,'#BA68C8'],[86,'#FFB74D'],[93,'#4FC3F7']];
+    h = fl.map(function(f,i){ return `<div class="d sway2" style="left:${f[0]}%;bottom:-8px;width:64px;animation-delay:-${i}s">${svg('-45 -160 90 165',flower(0,0,1,f[1]))}</div>`; }).join('') +
+        `<div class="d float" style="left:4%;top:22%;width:70px">${butterflySVG('#F48FB1','#CE93D8')}</div>` +
+        `<div class="d float" style="right:4%;top:36%;width:62px;animation-delay:-3s">${butterflySVG('#81D4FA','#FFF176')}</div>` +
+        T(88,12,28,.5,'#F8BBD0') + T(10,58,24,1.4,'#FFF59D');
+  } else if(kind === 'party'){
+    var bc = ['#EF5350','#FFCA28','#42A5F5','#66BB6A','#AB47BC','#FF8A65'];
+    var pos = [[2,30],[8,58],[3,78],[91,26],[86,55],[93,76]];
+    h = pos.map(function(p,i){ return `<div class="d float" style="left:${p[0]}%;top:${p[1]}%;width:64px;animation-delay:-${i*.9}s">${balloonSVG(bc[i])}</div>`; }).join('') +
+        T(20,12,34,0) + T(76,10,30,.8,'#F8BBD0') + T(50,4,26,1.5,'#B3E5FC') + `<div class="d" style="right:-60px;bottom:-40px;width:320px;opacity:.5">${rainbowSVG()}</div>`;
+  }
+  $('#decor').innerHTML = h;
+}
+var rewardTmo = null;
+function leaveScreen(){ clearTimeout(rewardTmo); rewardTmo = null; window.scrollTo(0,0); }
+
+/* =====================================================================
+   9. БАСТЫ БЕТ
+   ===================================================================== */
+function rainbowTitle(text){
+  var cols = ['#FF5252','#FF9100','#F9A825','#43A047','#039BE5','#8E24AA','#EC407A'], k = 0;
+  return text.split(' ').map(function(w){
+    return '<span class="w">' + w.split('').map(function(ch){
+      var s = `<span class="l" style="color:${cols[k%cols.length]};animation-delay:${(k*0.08).toFixed(2)}s">${ch}</span>`; k++; return s;
+    }).join('') + '</span>';
+  }).join(' ');
+}
+function sectionCard(S,i){
+  var d = state.done[i].filter(Boolean).length;
+  var label = d === 4 ? 'Қайта қарау 👀' : (d > 0 ? 'Жалғастыру ▶' : 'Бастау ▶');
+  return `<button class="scard" data-sec="${i}" style="--c1:${S.c1};--c2:${S.c2};--c3:${S.c3}" aria-label="${i+1}-бөлім. ${S.title}. ${d} / 4 орындалды">
+<span class="num">${i+1}</span><span class="pic">${S.icon()}</span>
+<span class="stitle">${S.title}</span><span class="sgoal">${S.goal}</span>
+<span class="pstars">${[0,1,2,3].map(function(k){ return `<span class="s ${state.done[i][k]?'on':''}">${MINI_STAR}</span>`; }).join('')}</span>
+<span class="go">${label}</span></button>`;
+}
+function renderHome(){
+  leaveScreen();
+  state.screen = 'home';
+  setDecor('home'); updateHeader();
+  var any = totalStars() > 0, all = allDone();
+  var startLabel = all ? '🏆 Қорытындыны көру' : (any ? '▶ Ойынды жалғастыру' : '▶ Ойынды бастау');
+  app.innerHTML = `<section class="screen home">
+<div class="hero">
+  <h1 class="title"><span class="sr">Ойнаймын және үйренемін!</span><span aria-hidden="true">${rainbowTitle('ОЙНАЙМЫН ЖӘНЕ ҮЙРЕНЕМІН!')}</span></h1>
+  <div class="greet">
+    <div class="mascot">${MASCOT}</div>
+    <div class="bubble"><p class="sub">Ойын арқылы білім аламыз! 🌈</p>
+      <button class="startbtn" id="startBtn">${startLabel}</button></div>
+  </div>
+  <div class="school"><span>🏫 №221 жалпы білім беретін мектеп</span><span>✏️ Автор: Самал Нұрәділқызы</span></div>
+</div>
+<p class="hint">👇 Немесе бөлімді өзің таңда:</p>
+<div class="cards">${SECTIONS.map(sectionCard).join('')}</div>
+</section>`;
+  $('#startBtn').addEventListener('click', startGame);
+  $$('.scard').forEach(function(b){ b.addEventListener('click', function(){ openSection(+b.getAttribute('data-sec')); }); });
+}
+function startGame(){
+  for(var i=0;i<SECTIONS.length;i++){ if(!secDone(i)){ openSection(i); return; } }
+  showFinal();
+}
+function openSection(i){
+  state.sec = i;
+  var f = state.done[i].indexOf(false);
+  state.task = f < 0 ? 0 : f;
+  renderTask();
+}
+
+/* =====================================================================
+   10. ТАПСЫРМА БЕТІ
+   ===================================================================== */
+function curTask(){ return SECTIONS[state.sec].tasks[state.task]; }
+function frontier(){ var f = state.done[state.sec].indexOf(false); return f < 0 ? 3 : f; }
+function setSectionVars(S){
+  app.style.setProperty('--sec', S.sec); app.style.setProperty('--secD', S.secD); app.style.setProperty('--secS', S.secS);
+}
+function optHTML(a,i,t){
+  var pal = t.layout === 'pics' ? PIC_PAL : TEXT_PAL[i % TEXT_PAL.length];
+  var inner = '';
+  if(t.layout === 'pics') inner = `<span class="oi">${a.pic}</span>` + (a.label ? `<span class="ol">${a.label}</span>` : '');
+  else if(t.layout === 'nums') inner = `<span class="bignum">${a.t}</span>` + (a.dots ? `<span class="dotrow">${new Array(a.dots+1).join('<i></i>')}</span>` : '');
+  else inner = (a.ic ? `<span class="oi">${a.ic}</span>` : '') + `<span class="ot">${a.t}</span>`;
+  var aria = a.aria || a.label || a.t;
+  return `<button class="opt" data-i="${i}" style="--oc:${pal[0]};--ocd:${pal[1]}" aria-label="${aria}">${inner}</button>`;
+}
+var busy = false, picked = -1, encIdx = 0, lastPraise = -1;
+function renderTask(){
+  leaveScreen();
+  state.screen = 'task'; busy = false; picked = -1;
+  var S = SECTIONS[state.sec], t = curTask(), done = state.done[state.sec], fr = frontier();
+  setSectionVars(S); setDecor(S.decor); updateHeader();
+  var startMsg = done[state.task] ? 'Бұл тапсырманы орындадың! ⭐' : (t.mode === 'pair' ? 'Екі бірдей суретті бас 👆' : 'Дұрыс жауапты таңда 👆');
+  app.innerHTML = `<section class="screen task">
+<div class="taskhead">
+  <div class="secchip"><span class="ic">${S.icon()}</span><span>${S.title}</span></div>
+  <div class="dots" role="group" aria-label="Тапсырмалар">${S.tasks.map(function(x,i){
+    var dis = i > fr ? 'disabled' : '';
+    return `<button class="dot ${i===state.task?'cur':''} ${done[i]?'done':''}" data-go="${i}" ${dis} aria-label="${i+1}-тапсырма${done[i]?', орындалды':''}">${done[i]?'★':(i+1)}</button>`;
+  }).join('')}<span class="count">${state.task+1}/4</span></div>
+</div>
+<div class="tcard" id="tcard">
+  <div class="ttitle"><span>${state.task+1}-тапсырма · «${t.title}»</span>${done[state.task]?'<span class="donebadge">✔ Орындалды</span>':''}</div>
+  <h2 class="q">${t.q}</h2>
+  ${t.scene ? `<div class="scene">${t.scene()}</div>` : ''}
+  <div class="opts ${t.layout} n${t.answers.length}" id="opts">${t.answers.map(function(a,i){ return optHTML(a,i,t); }).join('')}</div>
+  <div class="fb ${t.mode==='pair'&&!done[state.task]?'pick':''}" id="fb" aria-live="polite"><span class="mini">${FACE_STAR}</span><span class="msg">${startMsg}</span></div>
+</div>
+<div class="nav">
+  <button class="navbtn prev ${state.task===0?'hide':''}" id="prevBtn">⬅ Артқа</button>
+  <button class="navbtn next" id="nextBtn" ${done[state.task]?'':'disabled'}>${nextLabel()}</button>
+</div>
+</section>`;
+  $$('#opts .opt').forEach(function(b){ b.addEventListener('click', function(){ onAnswer(+b.getAttribute('data-i'), b); }); });
+  $$('.dot').forEach(function(b){ b.addEventListener('click', function(){ state.task = +b.getAttribute('data-go'); renderTask(); }); });
+  $('#prevBtn').addEventListener('click', function(){ if(state.task > 0){ state.task--; renderTask(); } });
+  $('#nextBtn').addEventListener('click', goNext);
+}
+function nextLabel(){
+  if(state.task < 3) return 'Келесі ➡';
+  return secDone(state.sec) ? 'Марапатты көру 🏆' : 'Келесі ➡';
+}
+function goNext(){
+  if(!state.done[state.sec][state.task]) return; /* тек дұрыс жауаптан кейін */
+  if(state.task < 3){ state.task++; renderTask(); return; }
+  if(secDone(state.sec)) showSectionReward();
+}
+function setFb(type, text){
+  var fb = $('#fb'); if(!fb) return;
+  fb.className = 'fb ' + type;
+  fb.querySelector('.msg').textContent = text;
+}
+function onAnswer(i, btn){
+  if(busy) return;
+  var t = curTask(), btns = $$('#opts .opt');
+  if(t.mode === 'pair'){
+    if(i === picked){ btn.classList.remove('picked'); picked = -1; setFb('pick','Екі бірдей суретті бас 👆'); return; }
+    if(picked < 0){ picked = i; btn.classList.add('picked'); setFb('pick','Енді дәл осындай суретті тап 👀'); return; }
+    var first = btns[picked], a = t.answers[picked], b = t.answers[i];
+    picked = -1;
+    first.classList.remove('picked');
+    if(a.kind === b.kind) success([first, btn]);
+    else wrong([first, btn], true);
+    return;
+  }
+  if(t.answers[i].ok) success([btn]); else wrong([btn], false);
+}
+function wrong(btns, clearAfter){
+  /* қате жауап: дыбыс жоқ, ұпай шегерілмейді, тек жылы сөз */
+  btns.forEach(function(b){ b.classList.remove('wrong'); void b.offsetWidth; b.classList.add('wrong'); });
+  if(clearAfter) setTimeout(function(){ btns.forEach(function(b){ b.classList.remove('wrong'); }); }, 650);
+  setFb('try', ENCOURAGE[encIdx++ % ENCOURAGE.length] + ' 💪');
+}
+function success(btns){
+  busy = true;
+  var done = state.done[state.sec], firstTime = !done[state.task];
+  done[state.task] = true;
+  btns.forEach(function(b){ b.classList.add('right'); });
+  $$('#opts .opt').forEach(function(b){ if(btns.indexOf(b) < 0){ b.classList.add('dim'); b.setAttribute('aria-disabled','true'); } });
+  var k; do { k = Math.floor(Math.random()*PRAISE.length); } while(k === lastPraise);
+  lastPraise = k;
+  var word = PRAISE[k];
+  setFb('good', word.charAt(0) + word.slice(1).toLowerCase() + ' ⭐');
+  /* қол шапалақтау + конфетти + жұлдыздар — бір рет қана */
+  audio.applause();
+  showPraise(word);
+  sparkles();
+  var r = btns[0].getBoundingClientRect();
+  confetti.burst(r.left + r.width/2, r.top + r.height/2, 120);
+  confetti.burst(window.innerWidth*.15, window.innerHeight*.35, 50);
+  confetti.burst(window.innerWidth*.85, window.innerHeight*.35, 50);
+  if(firstTime) flyStar(btns[0]);
+  /* көрсеткіштерді жаңарту */
+  var fr = frontier();
+  $$('.dot').forEach(function(b,i){
+    b.classList.toggle('done', done[i]); b.textContent = done[i] ? '★' : (i+1);
+    if(i <= fr) b.removeAttribute('disabled');
+  });
+  var nb = $('#nextBtn'); nb.removeAttribute('disabled'); nb.textContent = nextLabel(); nb.classList.add('glow');
+  if(firstTime && secDone(state.sec)){
+    var secAt = state.sec;
+    rewardTmo = setTimeout(function(){ if(state.screen === 'task' && state.sec === secAt) showSectionReward(); }, 2600);
+  }
+}
+
+/* =====================================================================
+   11. МАРАПАТ ЭФФЕКТІЛЕРІ
+   ===================================================================== */
+var praiseTmo = null;
+function showPraise(text){
+  var el = $('#praise');
+  el.innerHTML = `<div class="pw"><div class="pstar">${FACE_STAR}${FACE_STAR}${FACE_STAR}</div><div class="ptext">${text}</div></div>`;
+  clearTimeout(praiseTmo);
+  praiseTmo = setTimeout(function(){ el.innerHTML = ''; }, 2100);
+}
+function sparkles(){
+  if(settings.noanim) return;
+  var card = $('#tcard'); if(!card) return;
+  for(var i=0;i<12;i++){
+    var s = document.createElement('span');
+    s.className = 'spark'; s.innerHTML = SPARK;
+    s.style.left = (5+Math.random()*85) + '%'; s.style.top = (5+Math.random()*80) + '%';
+    s.style.animationDelay = (Math.random()*.4).toFixed(2) + 's';
+    card.appendChild(s);
+    (function(n){ setTimeout(function(){ if(n.parentNode) n.parentNode.removeChild(n); }, 1700); })(s);
+  }
+}
+function flyStar(el){
+  var box = $('#starBox');
+  function finish(){
+    $('#starCount').textContent = totalStars();
+    box.classList.remove('bump'); void box.offsetWidth; box.classList.add('bump');
+  }
+  if(settings.noanim || !document.body.animate){ finish(); return; }
+  var r = el.getBoundingClientRect(), tr = box.getBoundingClientRect();
+  var s = document.createElement('div'); s.className = 'flystar'; s.innerHTML = FACE_STAR;
+  document.body.appendChild(s);
+  var x0 = r.left + r.width/2 - 35, y0 = r.top + r.height/2 - 35, x1 = tr.left + 30 - 35, y1 = tr.top + tr.height/2 - 35;
+  var anim = s.animate([
+    {transform:`translate(${x0}px,${y0}px) scale(.4) rotate(0deg)`, opacity:0},
+    {transform:`translate(${x0}px,${y0-100}px) scale(1.6) rotate(180deg)`, opacity:1, offset:.35},
+    {transform:`translate(${x1}px,${y1}px) scale(.5) rotate(540deg)`, opacity:1}
+  ], {duration:1300, easing:'ease-in-out'});
+  anim.onfinish = function(){ if(s.parentNode) s.parentNode.removeChild(s); finish(); };
+}
+function starRow(n, small){
+  var out = '';
+  for(var k=0;k<n;k++) out += FACE_STAR.replace('<svg ', '<svg style="animation-delay:'+(0.2+k*0.12).toFixed(2)+'s'+(small?';width:clamp(36px,6vw,52px)':'')+'" ');
+  return out;
+}
+
+/* =====================================================================
+   12. БӨЛІМ МАРАПАТЫ ЖӘНЕ ЖАЛПЫ ҚОРЫТЫНДЫ
+   ===================================================================== */
+function nextUnfinished(){
+  for(var i=1;i<=SECTIONS.length;i++){ var j = (state.sec+i) % SECTIONS.length; if(!secDone(j)) return j; }
+  return -1;
+}
+function showSectionReward(){
+  leaveScreen();
+  state.screen = 'reward';
+  var S = SECTIONS[state.sec], nxt = nextUnfinished();
+  setDecor('party'); updateHeader();
+  app.style.setProperty('--sec', '#FFD54F'); app.style.setProperty('--secD', '#F57F17');
+  var nextBtn = nxt >= 0
+    ? '<button class="navbtn next glow" id="rwNext">Келесі бөлімге өту ➡</button>'
+    : '<button class="navbtn next glow" id="rwFinal">Қорытындыны көру 🏆</button>';
+  app.innerHTML = `<section class="screen reward">
+<h1 class="rwtitle">Құттықтаймыз! 🎉</h1>
+<p class="rwsub">«${S.title}» бөлімін толық орындадың!</p>
+<div class="rwstage"><div class="rays">${raysSVG()}</div><div class="medal">${medalSVG()}</div><div class="mascot">${MASCOT}</div></div>
+<div class="rwstars">${starRow(4)}</div>
+<div class="totalbox">${MINI_STAR}<span>Бұл бөлімде: <b>4</b> · Барлығы: <b>${totalStars()}</b> жұлдыз</span></div>
+<div class="rwbtns"><button class="navbtn" id="rwHome">🏠 Басты бет</button>${nextBtn}</div>
+</section>`;
+  $('#rwHome').addEventListener('click', renderHome);
+  if(nxt >= 0) $('#rwNext').addEventListener('click', function(){ openSection(nxt); });
+  else $('#rwFinal').addEventListener('click', showFinal);
+  confetti.rain(130);
+  setTimeout(function(){ confetti.burst(window.innerWidth*.25, window.innerHeight*.5, 80); }, 400);
+  setTimeout(function(){ confetti.burst(window.innerWidth*.75, window.innerHeight*.5, 80); }, 900);
+}
+function showFinal(){
+  leaveScreen();
+  state.screen = 'final';
+  setDecor('party'); updateHeader();
+  app.style.setProperty('--sec', '#FFD54F'); app.style.setProperty('--secD', '#F57F17');
+  var n = totalStars();
+  app.innerHTML = `<section class="screen reward final">
+<h1 class="rwtitle">ЖАРАЙСЫҢ!</h1>
+<p class="rwsub">СЕН БАРЛЫҚ ТАПСЫРМАНЫ ОРЫНДАДЫҢ!</p>
+<div class="rwstage"><div class="rays">${raysSVG()}</div><div class="medal">${medalSVG()}</div><div class="trophy">${trophySVG()}</div><div class="mascot">${MASCOT}</div></div>
+<div class="totalbox">${MINI_STAR}<span>Жиналған жұлдыздар: <b>${n}</b> / 12</span></div>
+<div class="rwstars">${starRow(n, true)}</div>
+<div class="secdone">${SECTIONS.map(function(S){ return `<span>✅ ${S.title}</span>`; }).join('')}</div>
+<div class="rwbtns"><button class="navbtn" id="fHome">🏠 Басты бет</button><button class="navbtn bigagain glow" id="fAgain">🔁 ҚАЙТА ОЙНАУ</button></div>
+</section>`;
+  $('#fHome').addEventListener('click', renderHome);
+  $('#fAgain').addEventListener('click', function(){ resetProgress(); renderHome(); toast('Жаңа ойын басталды! Сәттілік! 🍀'); });
+  confetti.rain(220);
+  [300,900,1500,2200].forEach(function(d,i){ setTimeout(function(){ confetti.burst(window.innerWidth*(i%2?.75:.25), window.innerHeight*.45, 90); }, d); });
+}
+
+/* =====================================================================
+   13. ҚОЛЖЕТІМДІЛІК ПАНЕЛІ
+   ===================================================================== */
+function renderPanel(){
+  function tog(act, ic, label, on){
+    return `<button class="tile" data-act="${act}" aria-pressed="${on}"><span class="ti">${ic}</span><span class="tl">${label}</span><span class="st">${on?'ҚОСУЛЫ':'ӨШІРУЛІ'}</span></button>`;
+  }
+  function th(val, label, sw){
+    var on = settings.theme === val;
+    return `<button class="tile" data-act="theme:${val}" aria-pressed="${on}"><span class="sw" style="${sw}">Аа</span><span class="tl">${label}</span><span class="st">${on?'✔':''}</span></button>`;
+  }
+  function rng(key, ic, label){
+    var p = Math.round(settings[key]*100);
+    return `<label class="range"><span class="ri">${ic}</span><span>${label}</span><span class="rv" id="rv-${key}">${p}%</span>
+<input type="range" min="0" max="100" step="1" value="${p}" data-rng="${key}" style="--p:${p}%" aria-label="${label}"></label>`;
+  }
+  $('#panel').innerHTML = `
+<div class="ph"><h2>👁️ Қолжетімділік панелі</h2><button class="close" data-act="close" aria-label="Жабу">✖</button></div>
+<div class="pgroup"><h3>Қаріп өлшемі</h3><div class="fontrow">
+  <button data-act="fs-" aria-label="Қаріпті кішірейту">A −</button><span class="val">${Math.round(settings.fs*100)}%</span><button data-act="fs+" aria-label="Қаріпті үлкейту">A +</button>
+</div></div>
+<div class="pgroup"><h3>Түс режимі</h3><div class="pgrid">
+  ${th('bw','Ақ-қара жоғары контраст','background:linear-gradient(90deg,#000 50%,#fff 50%);color:#888')}
+  ${th('dark','Қара фон, ақ мәтін','background:#000;color:#fff;border-color:#000')}
+  ${th('color','Түрлі-түсті (қалыпты)','background:linear-gradient(135deg,#FFD54F,#4FC3F7,#F48FB1,#81C784);color:#33275A')}
+  <button class="tile" data-act="normal"><span class="ti">↺</span><span class="tl">Қалыпты түстерге қайтару</span></button>
+</div></div>
+<div class="pgroup"><h3>Көрініс</h3><div class="pgrid">
+  ${tog('big','🔲','Үлкен батырмалар',settings.big)}
+  ${tog('anim','🐢','Анимацияны азайту',settings.noanim)}
+</div></div>
+<div class="pgroup"><h3>Дыбыс</h3>
+  ${tog('music','🎹','Фондық музыка (фортепиано)',settings.music)}
+  ${rng('musicVol','🎵','Музыка деңгейі')}
+  ${rng('clapVol','👏','Қол шапалақтау деңгейі')}
+  <button class="tile wide" data-act="testclap"><span class="ti">👏</span><span class="tl">Қол шапалақтауды тыңдап көру</span></button>
+</div>
+<div class="pgroup"><h3>Ойын</h3>
+  <button class="tile wide" data-act="resetgame"><span class="ti">🔁</span><span class="tl">Ойынды басынан бастау (жұлдыздар тазаланады)</span></button>
+  <button class="tile wide" data-act="reset"><span class="ti">⚙️</span><span class="tl">Барлық баптауларды қалпына келтіру</span></button>
+</div>`;
+}
+function applySettings(){
+  var b = document.body;
+  ['t-color','t-dark','t-bw'].forEach(function(c){ b.classList.remove(c); });
+  b.classList.add('t-' + settings.theme);
+  b.classList.toggle('contrast', settings.theme !== 'color');
+  b.classList.toggle('noanim', settings.noanim);
+  b.classList.toggle('bigbtn', settings.big);
+  document.documentElement.style.setProperty('--fs', settings.fs);
+  var meta = document.querySelector('meta[name=theme-color]');
+  if(meta) meta.setAttribute('content', settings.theme === 'dark' ? '#000000' : (settings.theme === 'color' ? '#B3E5FC' : '#ffffff'));
+  updateHeader(); renderPanel(); saveSettings();
+}
+function updateHeader(){
+  var mb = $('#musicBtn');
+  mb.setAttribute('aria-pressed', settings.music);
+  mb.classList.toggle('mon', settings.music); mb.classList.toggle('moff', !settings.music);
+  mb.querySelector('.hi').textContent = settings.music ? '🎵' : '🔇';
+  mb.querySelector('.hl').textContent = settings.music ? 'Музыка қосулы' : 'Музыка өшірулі';
+  $('#homeBtn').classList.toggle('hide', state.screen === 'home');
+  $('#starCount').textContent = totalStars();
+}
+function openPanel(){ document.body.classList.add('panel-open'); var c = $('#panel .close'); if(c) c.focus(); }
+function closePanel(){ document.body.classList.remove('panel-open'); $('#a11yBtn').focus(); }
+function setMusic(on){
+  settings.music = on;
+  if(on) audio.musicStart(); else audio.musicStop();
+}
+$('#panel').addEventListener('click', function(e){
+  var b = e.target.closest('[data-act]'); if(!b) return;
+  var act = b.getAttribute('data-act');
+  if(act === 'close'){ closePanel(); return; }
+  if(act.indexOf('theme:') === 0){
+    settings.theme = act.slice(6);
+    toast({color:'Түрлі-түсті режим',bw:'Ақ-қара жоғары контраст қосылды',dark:'Қара фон, ақ мәтін қосылды'}[settings.theme]);
+  }
+  else if(act === 'normal'){ settings.theme = 'color'; toast('Қалыпты түстер қайтарылды'); }
+  else if(act === 'fs-' || act === 'fs+'){
+    var idx = FS.indexOf(settings.fs); if(idx < 0) idx = 1;
+    idx = Math.max(0, Math.min(FS.length-1, idx + (act === 'fs+' ? 1 : -1)));
+    settings.fs = FS[idx];
+  }
+  else if(act === 'big') settings.big = !settings.big;
+  else if(act === 'anim') settings.noanim = !settings.noanim;
+  else if(act === 'music') setMusic(!settings.music);
+  else if(act === 'testclap'){ audio.applause(); return; }
+  else if(act === 'resetgame'){
+    resetProgress(); closePanel(); renderHome(); toast('Ойын басынан басталды'); return;
+  }
+  else if(act === 'reset'){
+    var wasOn = settings.music;
+    Object.assign(settings, DEF);
+    audio.setMusicVol(settings.musicVol); audio.setClapVol(settings.clapVol);
+    if(!wasOn) audio.musicStart();
+    toast('Бастапқы баптаулар қайтарылды');
+  }
+  applySettings();
+  var again = $('#panel [data-act="' + act + '"]'); if(again) again.focus();
+});
+$('#panel').addEventListener('input', function(e){
+  var r = e.target; if(!r.matches || !r.matches('input[type=range]')) return;
+  var key = r.getAttribute('data-rng'), v = +r.value/100;
+  settings[key] = v;
+  r.style.setProperty('--p', r.value + '%');
+  $('#rv-' + key).textContent = r.value + '%';
+  if(key === 'musicVol') audio.setMusicVol(v); else audio.setClapVol(v);
+  saveSettings();
+});
+
+/* =====================================================================
+   14. ЖОҒАРҒЫ БАТЫРМАЛАР ЖӘНЕ ІСКЕ ҚОСУ
+   ===================================================================== */
+$('#homeBtn').addEventListener('click', renderHome);
+$('#musicBtn').addEventListener('click', function(){
+  setMusic(!settings.music); applySettings();
+  toast(settings.music ? '🎵 Музыка қосылды' : '🔇 Музыка өшірілді');
+});
+$('#a11yBtn').addEventListener('click', openPanel);
+$('#panelBack').addEventListener('click', closePanel);
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && document.body.classList.contains('panel-open')) closePanel(); });
+
+/* Браузер дыбысты тек пайдаланушы алғаш басқаннан кейін ғана рұқсат етеді */
+var unlocked = false;
+function firstGesture(e){
+  if(unlocked) return; unlocked = true;
+  audio.init();
+  var onMusicBtn = e && e.target && e.target.closest && e.target.closest('#musicBtn');
+  if(settings.music && !onMusicBtn) audio.musicStart();
+}
+document.addEventListener('pointerdown', firstGesture, true);
+document.addEventListener('keydown', firstGesture, true);
+
+$('#starIcon').innerHTML = MINI_STAR;
+applySettings();
+renderHome();
+})();
+</script>
+</body>
+</html>
